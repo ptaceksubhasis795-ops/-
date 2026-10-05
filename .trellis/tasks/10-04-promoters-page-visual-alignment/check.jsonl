@@ -1,3 +1,0 @@
-{"file":".trellis/spec/admin/frontend/contracts.md","reason":"检查编辑、归档、权限和金额展示是否遵守后台契约"}
-{"file":".trellis/spec/admin/frontend/index.md","reason":"检查 admin build、深链、错误态和回归测试要求"}
-{"file":".trellis/spec/guides/code-reuse-thinking-guide.md","reason":"检查页面组件和现有销售状态/按钮样式是否复用"}
