@@ -15,8 +15,6 @@ secrets/*
 !secrets/.gitkeep
 project.private.config.json
 output/
-.trellis-manager/
-.trellis/workspace/
 借鉴项目/
 assets/banners/*.png
 assets/overlays/*.png

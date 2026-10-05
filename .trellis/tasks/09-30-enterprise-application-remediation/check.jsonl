@@ -1,9 +1,0 @@
-{"file": ".trellis/spec/guides/cross-layer-thinking-guide.md", "reason": "Review data flow across UI, API, service, database and assets."}
-{"file": ".trellis/spec/guides/code-reuse-thinking-guide.md", "reason": "Review duplicated contracts, labels and category mappings."}
-{"file": ".trellis/spec/nideshop-mini-program/backend/database-guidelines.md", "reason": "Review schema/migration/data persistence changes."}
-{"file": ".trellis/spec/nideshop-mini-program/backend/quality-guidelines.md", "reason": "Run backend quality gate."}
-{"file": ".trellis/spec/nideshop-mini-program/frontend/quality-guidelines.md", "reason": "Run frontend quality gate."}
-{"file": ".trellis/tasks/09-30-enterprise-application-remediation/research/current-state-and-reference.md", "reason": "Review findings and acceptance risks against the implementation."}
-{"file": ".trellis/spec/miniprogram/frontend/index.md", "reason": "Check mini program route and display contracts"}
-{"file": ".trellis/spec/admin/frontend/index.md", "reason": "Check admin route and permission surface"}
-{"file": ".trellis/spec/server/backend/index.md", "reason": "Check backend migration and persistence contracts"}

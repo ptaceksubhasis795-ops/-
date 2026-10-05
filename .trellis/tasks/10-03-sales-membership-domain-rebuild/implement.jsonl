@@ -1,6 +1,0 @@
-{"file": ".trellis/spec/guides/cross-layer-thinking-guide.md", "reason": "Cross-layer API, database, backend, admin and mini-program data flow."}
-{"file": ".trellis/spec/guides/code-reuse-thinking-guide.md", "reason": "Avoid duplicate status, tier and relationship contracts."}
-{"file": ".trellis/spec/admin/frontend/index.md", "reason": "Admin pagination, routed workspaces and quality rules."}
-{"file": ".trellis/spec/server/backend/index.md", "reason": "NestJS, Prisma, migration and persistence rules."}
-{"file": ".trellis/spec/miniprogram/frontend/index.md", "reason": "Mini-program pages, API and consent rules."}
-{"file": ".trellis/tasks/10-03-sales-membership-domain-rebuild/design.md", "reason": "Technical design and boundary decisions."}
