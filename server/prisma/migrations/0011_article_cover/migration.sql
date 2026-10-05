@@ -1,0 +1,5 @@
+ALTER TABLE `Article`
+  ADD COLUMN `coverMode` VARCHAR(20) NULL,
+  ADD COLUMN `coverKey` LONGTEXT NULL,
+  ADD COLUMN `coverWidth` INTEGER NULL,
+  ADD COLUMN `coverHeight` INTEGER NULL;

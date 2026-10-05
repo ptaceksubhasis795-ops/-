@@ -1,0 +1,15 @@
+<view class="page-shell upload-page">
+  <view class="page-heading"><text class="eyebrow">提交处方</text><text class="page-title">{{mode === 'consult' ? '问诊开方' : '上传线下处方'}}</text><text class="page-subtitle">{{mode === 'consult' ? '选择就诊人后提交问诊申请，后台会安排人工处理。' : '图片仅用于处方审核和后续购药，请确保文字清晰完整。'}}</text></view>
+  <view wx:if="{{submitted}}" class="surface submitted-card"><text class="success-mark">✓</text><text class="submitted-title">已提交审核</text><text class="submitted-copy">药师会在后台审核处方，审核完成后可以在“我的处方”中确认支付。</text><view class="primary-button submitted-button" bindtap="viewList">查看我的处方</view></view>
+  <view wx:else>
+    <view wx:if="{{errorMessage}}" class="surface empty-state"><text>{{errorMessage}}</text><view class="primary-button empty-button" bindtap="openLogin">去登录</view><view class="secondary-button empty-button" bindtap="onLoad">重新加载</view></view>
+    <view wx:if="{{!errorMessage}}" class="surface form-card">
+      <text class="field-label">选择就诊人</text>
+      <picker range="{{patients}}" range-key="name" value="{{patientIndex}}" bindchange="choosePatient"><view class="picker-row"><text wx:if="{{patients.length}}">{{patients[patientIndex].name}} · {{patients[patientIndex].relation}}</text><text wx:else class="muted">暂无就诊人</text><text>⌄</text></view></picker>
+      <view wx:if="{{mode !== 'consult'}}"><text class="field-label field-gap">处方图片</text><view class="upload-zone" bindtap="chooseFile"><image wx:if="{{filePath}}" class="upload-preview" src="{{filePath}}" mode="aspectFill" /><view wx:else class="upload-placeholder"><text class="upload-icon">＋</text><text wx:if="{{!fileName}}">点击选择或拍摄处方图片</text><text wx:else class="upload-selected">{{fileName}}</text></view><text class="upload-tip">支持 JPG、PNG，单张不超过 10MB · 点击可重新选择</text></view></view>
+      <view class="consent-row"><text class="consent-check">✓</text><text>我同意将本处方及就诊信息用于本次审核和购药服务。</text></view>
+    </view>
+    <view wx:if="{{!errorMessage}}" class="primary-button submit-button" bindtap="submit">{{submitting ? '正在提交…' : mode === 'consult' ? '提交问诊申请' : '提交药师审核'}}</view>
+  </view>
+</view>
+

@@ -1,0 +1,249 @@
+page {
+  --ink: #172322;
+  --ink-soft: #5e716d;
+  --ink-faint: #93a5a0;
+  --jade: #0d7f75;
+  --jade-deep: #075c57;
+  --jade-soft: #e2f2ee;
+  --paper: #f5f7f5;
+  --card: #ffffff;
+  --line: #e3ebe8;
+  --amber: #c8792f;
+  --amber-soft: #fff0dc;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+view,
+text,
+button,
+input,
+image,
+swiper,
+swiper-item {
+  box-sizing: border-box;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  line-height: inherit;
+}
+
+button::after { border: 0; }
+
+.page-shell {
+  min-height: 100vh;
+  padding: 30rpx 30rpx 72rpx;
+}
+
+.surface {
+  border: 1rpx solid rgba(227, 235, 232, 0.92);
+  border-radius: 26rpx;
+  background: var(--card);
+  box-shadow: 0 12rpx 36rpx rgba(24, 52, 48, 0.055);
+}
+
+.surface,
+.primary-button,
+.secondary-button,
+.category-card,
+.featured-card,
+.product-card,
+.quick-action,
+.service-row,
+.order-card,
+.rx-card,
+.article-card,
+.promo-action,
+.sales-action {
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, opacity 180ms ease;
+}
+
+.surface:active,
+.primary-button:active,
+.secondary-button:active,
+.category-card:active,
+.featured-card:active,
+.product-card:active,
+.quick-action:active,
+.service-row:active,
+.order-card:active,
+.rx-card:active,
+.article-card:active,
+.promo-action:active,
+.sales-action:active {
+  transform: scale(0.985);
+  opacity: 0.9;
+}
+
+.primary-button,
+.secondary-button,
+.danger-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 88rpx;
+  padding: 0 32rpx;
+  border-radius: 18rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.primary-button {
+  background: var(--jade);
+  color: #ffffff;
+  box-shadow: 0 12rpx 24rpx rgba(13, 127, 117, 0.2);
+}
+
+.secondary-button {
+  border: 2rpx solid #c9ded9;
+  background: #ffffff;
+  color: var(--jade-deep);
+}
+
+.danger-button { background: #bf5f4b; color: #ffffff; }
+
+.eyebrow {
+  color: #3a8c83;
+  font-size: 19rpx;
+  font-weight: 700;
+  letter-spacing: 3rpx;
+}
+
+.page-title {
+  display: block;
+  margin-top: 10rpx;
+  color: var(--ink);
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: 44rpx;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.page-subtitle {
+  display: block;
+  margin-top: 14rpx;
+  color: var(--ink-soft);
+  font-size: 24rpx;
+  line-height: 1.55;
+}
+
+.page-heading { margin-bottom: 30rpx; }
+
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 42rpx 0 20rpx;
+}
+
+.section-heading__title { color: var(--ink); font-size: 33rpx; font-weight: 700; }
+.section-heading__action { color: var(--jade); font-size: 23rpx; }
+.muted { color: var(--ink-faint); font-size: 21rpx; }
+.block-title { display: block; color: var(--ink); font-size: 29rpx; font-weight: 700; }
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 360rpx;
+  color: var(--ink-faint);
+  font-size: 26rpx;
+}
+
+.empty-symbol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 112rpx;
+  height: 112rpx;
+  margin-bottom: 20rpx;
+  border: 2rpx solid #d6e6e1;
+  border-radius: 38rpx;
+  background: var(--jade-soft);
+  color: var(--jade);
+  font-size: 42rpx;
+  font-weight: 700;
+}
+
+.empty-button { width: 230rpx; min-height: 76rpx; margin-top: 28rpx; font-size: 25rpx; }
+
+.image-frame { position: relative; overflow: hidden; background: #e3f0eb; }
+.image-frame image { display: block; width: 100%; height: 100%; }
+.image-frame .product-art { position: relative; z-index: 1; padding: 10rpx; }
+.image-frame .product-overlay { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 2; padding: 0; opacity: .26; pointer-events: none; }
+
+.product-fallback {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  color: var(--jade-deep);
+}
+
+.product-fallback::before,
+.product-fallback::after {
+  position: absolute;
+  border: 2rpx solid currentColor;
+  border-radius: 50%;
+  content: "";
+  opacity: 0.14;
+}
+
+.product-fallback::before { top: -66rpx; right: -28rpx; width: 230rpx; height: 230rpx; }
+.product-fallback::after { bottom: -92rpx; left: -50rpx; width: 280rpx; height: 280rpx; }
+.product-fallback.daily { background: #fff0d8; color: #9b5a27; }
+.product-fallback.prescription { background: #e0f2ed; color: var(--jade-deep); }
+.product-fallback.plum { background: #eee6f4; color: #725481; }
+
+.product-fallback__mark {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 116rpx;
+  height: 116rpx;
+  border: 2rpx solid currentColor;
+  border-radius: 50%;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.form-input,
+.withdraw-input { border: 2rpx solid var(--line); border-radius: 16rpx; background: #fbfdfc; }
+.large-text .page-title { font-size: 49rpx; }
+.large-text .page-subtitle,
+.large-text .service-name,
+.large-text .summary-label { font-size: 29rpx; }
+
+/* Sales pages share the same calm workbench language as the admin sales
+   workspace. These rules are intentionally scoped by class so the rest of
+   the mini program keeps its existing visual system. */
+.sales-sub-page {
+  --sales-canvas: #f7f7f3;
+  --sales-primary: #0f766e;
+  --sales-ink: #183b3b;
+  --sales-muted: #77908e;
+  background: var(--sales-canvas);
+}
+.sales-sub-page .page-heading { position: relative; padding: 8rpx 4rpx 0; }
+.sales-sub-page .page-heading::after { position: absolute; top: 0; right: 6rpx; width: 112rpx; height: 58rpx; border-top: 2rpx solid #b9d8d0; border-radius: 50%; content: ""; opacity: .7; transform: rotate(-9deg); }
+.sales-sub-page .page-title { color: var(--sales-ink); letter-spacing: .02em; }
+.sales-sub-page .surface { border-color: #dce7e4; box-shadow: 0 14rpx 36rpx rgba(24, 64, 58, .06); }
+.sales-sub-page .empty-state { min-height: 320rpx; }
+.sales-sub-page .status-pill { padding: 8rpx 16rpx; border-radius: 999rpx; background: #e0f2ec; color: var(--sales-primary); font-size: 20rpx; }
+.sales-sub-page[data-visual-state="error"] .empty-state { border-color: #efcbc4; background: #fffaf9; color: #a95750; }
+.sales-sub-page[data-visual-state="loading"] .empty-state::before { width: 30rpx; height: 30rpx; margin-bottom: 18rpx; border: 4rpx solid #cfeae2; border-top-color: var(--sales-primary); border-radius: 50%; content: ""; animation: sales-spin 900ms linear infinite; }
+.sales-sub-page[data-visual-state="saving"] .primary-button { opacity: .75; }
+@keyframes sales-spin { to { transform: rotate(360deg); } }

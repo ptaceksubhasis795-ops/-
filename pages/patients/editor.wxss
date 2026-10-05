@@ -1,0 +1,15 @@
+.editor-page { padding-bottom: 56rpx; }
+.page-heading { margin-bottom: 28rpx; }
+.eyebrow { display: block; color: #0f766e; font-size: 19rpx; letter-spacing: 2rpx; }
+.page-title { display: block; margin-top: 8rpx; color: #111827; font-size: 42rpx; font-weight: 700; }
+.page-subtitle { display: block; margin-top: 14rpx; color: #64748b; font-size: 23rpx; line-height: 1.5; }
+.form-card { padding: 30rpx; }
+.field-label { display: block; margin-top: 24rpx; color: #334155; font-size: 25rpx; font-weight: 700; }
+.field-label:first-child { margin-top: 0; }
+.form-input, .form-textarea { width: 100%; margin-top: 12rpx; padding: 20rpx; border: 2rpx solid #e4ecec; border-radius: 14rpx; color: #1f2937; font-size: 25rpx; }
+.form-input { height: 78rpx; }
+.form-textarea { min-height: 130rpx; }
+.picker-row { display: flex; align-items: center; justify-content: space-between; height: 78rpx; margin-top: 12rpx; padding: 0 20rpx; border: 2rpx solid #e4ecec; border-radius: 14rpx; color: #334155; font-size: 25rpx; }
+.consent-line { display: flex; align-items: flex-start; margin-top: 26rpx; color: #64748b; font-size: 21rpx; line-height: 1.5; }
+.consent-check { display: flex; align-items: center; justify-content: center; flex: none; width: 30rpx; height: 30rpx; margin-right: 10rpx; border-radius: 8rpx; background: #0f766e; color: #fff; font-size: 20rpx; }
+.save-button { margin-top: 24rpx; }

@@ -1,0 +1,2 @@
+-- Content fields were introduced by the following content management migration.
+-- This migration is intentionally empty so existing deployments keep their order.

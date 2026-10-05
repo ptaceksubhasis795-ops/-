@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/auth/login",
+    "pages/shop/list",
+    "pages/shop/detail",
+    "pages/cart/index",
+    "pages/checkout/index",
+    "pages/orders/list",
+    "pages/orders/detail",
+    "pages/prescriptions/list",
+    "pages/prescriptions/upload",
+    "pages/patients/list",
+    "pages/patients/editor",
+    "pages/addresses/list",
+    "pages/articles/list",
+    "pages/articles/detail",
+    "pages/member/apply",
+    "pages/member/promotion",
+    "pages/sales/index",
+    "pages/sales/network",
+    "pages/sales/promotion",
+    "pages/sales/customers",
+    "pages/sales/performance",
+    "pages/sales/rewards",
+    "pages/sales/withdrawals",
+    "pages/sales/order-create",
+    "pages/sales/order-draft",
+    "pages/profile/index",
+    "pages/aftersales/create",
+    "pages/invoice/create"
+  ],
+  "window": {
+    "navigationBarTitleText": "九转健康商城",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F6F7F9",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "tabBar": {
+    "color": "#7A8893",
+    "selectedColor": "#0F766E",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      { "pagePath": "pages/index/index", "text": "首页" },
+      { "pagePath": "pages/shop/list", "text": "商城" },
+      { "pagePath": "pages/orders/list", "text": "订单" },
+      { "pagePath": "pages/profile/index", "text": "我的" }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,12 @@
+.login-page { display: flex; align-items: center; flex-direction: column; min-height: 100vh; padding-top: 120rpx; }
+.login-brand { display: flex; align-items: center; flex-direction: column; }
+.login-mark { display: flex; align-items: center; justify-content: center; width: 116rpx; height: 116rpx; border-radius: 36rpx; background: #0f766e; color: #e7c89c; font-size: 45rpx; font-weight: 700; }
+.login-title { margin-top: 28rpx; color: #173b3c; font-family: serif; font-size: 38rpx; font-weight: 700; }
+.login-subtitle { margin-top: 12rpx; color: #7a9290; font-size: 23rpx; }
+.login-card { width: 100%; margin-top: 60rpx; padding: 30rpx; }
+.field-label { display: block; color: #334155; font-size: 25rpx; font-weight: 700; }
+.login-input { width: 100%; height: 84rpx; margin-top: 14rpx; padding: 0 22rpx; border: 2rpx solid #e4ecec; border-radius: 14rpx; font-size: 26rpx; }
+.login-agreement { display: flex; align-items: flex-start; margin-top: 24rpx; color: #7a8893; font-size: 21rpx; line-height: 1.5; }
+.agreement-check { display: flex; align-items: center; justify-content: center; width: 30rpx; height: 30rpx; margin-right: 9rpx; border-radius: 8rpx; background: #0f766e; color: #fff; }
+.login-button { margin-top: 26rpx; }
+.login-note { margin-top: 28rpx; color: #a0afb2; font-size: 20rpx; }

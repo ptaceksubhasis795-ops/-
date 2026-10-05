@@ -1,0 +1,3 @@
+ALTER TABLE `InventoryBatch`
+    ADD COLUMN `reservedQuantity` INTEGER NOT NULL DEFAULT 0,
+    ADD COLUMN `active` BOOLEAN NOT NULL DEFAULT true;

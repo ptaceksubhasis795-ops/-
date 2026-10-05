@@ -1,0 +1,43 @@
+.sales-page { padding-bottom: 66rpx; }
+.sales-hero { position: relative; overflow: hidden; padding: 30rpx 28rpx 28rpx; border-radius: 29rpx; background: #0b706a; color: #fff; box-shadow: 0 15rpx 35rpx rgba(11,112,106,.18); }
+.sales-hero::after { position: absolute; right: -88rpx; bottom: -120rpx; width: 300rpx; height: 300rpx; border: 2rpx solid rgba(255,255,255,.18); border-radius: 50%; content: ""; }
+.sales-hero-top { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; }
+.sales-hero .eyebrow { color: #b9e7df; }
+.sales-mark { display: flex; align-items: center; justify-content: center; width: 57rpx; height: 57rpx; border: 2rpx solid rgba(255,255,255,.45); border-radius: 19rpx; font-size: 19rpx; font-weight: 700; transform: rotate(7deg); }
+.sales-title { position: relative; z-index: 1; display: block; margin-top: 23rpx; font-family: "Noto Serif SC", "Songti SC", serif; font-size: 36rpx; font-weight: 700; }
+.sales-balance { position: relative; z-index: 1; margin-top: 41rpx; }
+.balance-label { display: block; color: #c9ece6; font-size: 21rpx; }
+.balance-value { display: block; margin-top: 7rpx; color: #fff; font-size: 55rpx; font-weight: 700; }
+.sales-actions { position: relative; z-index: 1; display: flex; gap: 13rpx; margin-top: 25rpx; }
+.sales-action { display: flex; align-items: center; justify-content: space-between; flex: 1; height: 67rpx; padding: 0 18rpx; border: 1rpx solid rgba(255,255,255,.35); border-radius: 16rpx; color: #fff; font-size: 22rpx; }
+.promo-tools { margin-top: 18rpx; padding: 23rpx; }
+.promo-tools-head { display: flex; align-items: flex-end; justify-content: space-between; }
+.promo-tools-head > view { display: flex; flex-direction: column; gap: 6rpx; }
+.section-kicker { color: #6a9990; font-size: 16rpx; font-weight: 700; letter-spacing: 2rpx; }
+.promo-actions { display: flex; justify-content: space-between; margin-top: 21rpx; }
+.promo-action { display: flex; align-items: center; flex-direction: column; min-width: 140rpx; background: transparent; color: #55706a; font-size: 21rpx; }
+.promo-icon { display: flex; align-items: center; justify-content: center; width: 61rpx; height: 61rpx; margin-bottom: 9rpx; border: 2rpx solid #cbe2dc; border-radius: 20rpx; background: #edf8f5; color: #0d7f75; font-size: 23rpx; font-weight: 700; }
+.promo-action:nth-child(2) .promo-icon { border-color: #f0d6b4; background: #fff5e8; color: #b7682e; }
+.promo-action:nth-child(3) .promo-icon { border-color: #d8c9e2; background: #f5eff8; color: #725481; }
+.metrics { display: flex; gap: 12rpx; margin-top: 18rpx; }
+.metric-card { flex: 1; padding: 19rpx 15rpx; }
+.metric-label { display: block; color: #71827e; font-size: 19rpx; }
+.metric-value { display: block; margin-top: 13rpx; color: #263936; font-size: 27rpx; font-weight: 700; }
+.metric-hint { display: block; margin-top: 7rpx; color: #9aa9a5; font-size: 17rpx; }
+.customer-list, .commission-list { padding: 0 21rpx; }
+.customer-row, .commission-row { display: flex; align-items: center; min-height: 108rpx; }
+.customer-row + .customer-row, .commission-row + .commission-row { border-top: 1rpx solid #e7efec; }
+.customer-avatar { display: flex; align-items: center; justify-content: center; width: 61rpx; height: 61rpx; border-radius: 22rpx; background: #fff0dc; color: #b7682e; font-family: "Noto Serif SC", "Songti SC", serif; font-size: 23rpx; font-weight: 700; }
+.customer-copy { display: flex; flex: 1; flex-direction: column; padding-left: 15rpx; color: #334643; font-size: 24rpx; }
+.customer-copy .muted { margin-top: 7rpx; }
+.customer-amount, .commission-amount { color: #bd6a28; font-size: 23rpx; font-weight: 700; }
+.commission-row > view { flex: 1; }
+.commission-source { display: block; color: #334643; font-size: 24rpx; }
+.modal-mask { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 20; display: flex; align-items: flex-end; background: rgba(15,23,42,.42); }
+.withdraw-modal { width: 100%; padding: 33rpx 30rpx 48rpx; border-radius: 29rpx 29rpx 0 0; background: #fff; box-shadow: 0 -15rpx 38rpx rgba(24,52,48,.12); }
+.modal-kicker { display: block; color: #6a9990; font-size: 16rpx; font-weight: 700; letter-spacing: 2rpx; }
+.modal-title { display: block; margin-top: 9rpx; color: #223632; font-family: "Noto Serif SC", "Songti SC", serif; font-size: 32rpx; font-weight: 700; }
+.modal-copy { display: block; margin-top: 15rpx; color: #687b76; font-size: 22rpx; line-height: 1.55; }
+.withdraw-input { width: 100%; height: 82rpx; margin-top: 23rpx; padding: 0 19rpx; color: #243632; font-size: 25rpx; }
+.modal-actions { display: flex; gap: 13rpx; margin-top: 23rpx; }
+.modal-actions view { flex: 1; min-height: 79rpx; font-size: 24rpx; }

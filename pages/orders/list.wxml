@@ -1,0 +1,16 @@
+<view class="page-shell orders-page">
+  <view class="page-heading"><text class="eyebrow">订单记录</text><text class="page-title">我的订单</text><text class="page-subtitle">每一次购买，都有清晰的状态和记录。</text></view>
+  <scroll-view class="order-tabs" scroll-x="true" enhanced="true" show-scrollbar="false"><view wx:for="{{tabs}}" wx:key="key" class="order-tab {{current === item.key ? 'active' : ''}}" bindtap="switchTab" data-key="{{item.key}}">{{item.label}}</view></scroll-view>
+  <view wx:if="{{loading}}" class="surface empty-state orders-empty"><text class="empty-symbol">···</text><text>正在整理订单</text></view>
+  <view wx:elif="{{errorMessage}}" class="surface empty-state orders-empty"><text>{{errorMessage}}</text><view wx:if="{{errorMessage === '请先登录后查看订单'}}" class="primary-button empty-button" bindtap="openLogin">去登录</view><view class="secondary-button empty-button" bindtap="retry">重新加载</view><view class="secondary-button empty-button" bindtap="shop">去商城</view></view>
+  <view wx:elif="{{orders.length}}" class="order-list">
+    <view wx:for="{{orders}}" wx:for-item="order" wx:key="id" class="surface order-card" bindtap="openOrder" data-id="{{order.id}}">
+      <view class="order-card-head"><view><text class="order-kicker">订单 / {{index + 1}}</text><text class="order-no">{{order.orderNo}}</text></view><text class="order-status">{{order.statusText}}</text></view>
+      <view wx:for="{{order.items}}" wx:for-item="line" wx:key="cartKey" class="order-item"><view class="order-thumb image-frame" style="background: {{line.color}};"><image wx:if="{{line.image}}" class="product-art" src="{{line.image}}" mode="aspectFit" /><image wx:if="{{line.overlay}}" class="product-overlay" src="{{line.overlay}}" mode="scaleToFill" /><view wx:if="{{!line.image}}" class="product-fallback {{line.category}}"><text class="product-fallback__mark">{{line.category === 'prescription' ? '处' : '养'}}</text></view></view><view class="order-item-copy"><text>{{line.name}}</text><text class="muted">{{line.skuName || line.unit || '默认规格'}} · ×{{line.quantity}} · ¥{{line.unitPriceText || line.unitPrice}}</text></view></view>
+      <view class="order-card-foot"><text class="muted">共 {{order.itemCount}} 件 · 查看详情 →</text><text class="order-total">¥{{order.totalText}}</text></view>
+    </view>
+  </view>
+  <view wx:if="{{loadingMore}}" class="muted loading-more">正在加载更多订单</view>
+  <view wx:if="{{!loading && !errorMessage && !orders.length && !loadingMore}}" class="surface empty-state orders-empty"><text class="empty-symbol">单</text><text>还没有相关订单</text><text class="empty-copy">去商城挑一件适合今天的好物</text><view class="secondary-button empty-button" bindtap="shop">去逛逛</view></view>
+</view>
+

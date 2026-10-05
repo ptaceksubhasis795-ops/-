@@ -1,0 +1,9 @@
+{"file": ".trellis/spec/guides/cross-layer-thinking-guide.md", "reason": "Cross-layer changes span mini program, Vue admin, NestJS API, Prisma and content assets."}
+{"file": ".trellis/spec/guides/code-reuse-thinking-guide.md", "reason": "Shared contracts and category/config values must not drift across clients."}
+{"file": ".trellis/spec/nideshop-mini-program/backend/database-guidelines.md", "reason": "Reference database and migration conventions for the backend layer."}
+{"file": ".trellis/spec/nideshop-mini-program/backend/quality-guidelines.md", "reason": "Backend quality and verification checklist."}
+{"file": ".trellis/spec/nideshop-mini-program/frontend/quality-guidelines.md", "reason": "Frontend quality expectations for mini-program workflows."}
+{"file": ".trellis/tasks/09-30-enterprise-application-remediation/research/current-state-and-reference.md", "reason": "Use repository evidence and reference-project patterns while implementing."}
+{"file": ".trellis/spec/miniprogram/frontend/index.md", "reason": "Native mini program routes, consent and sales page contracts"}
+{"file": ".trellis/spec/admin/frontend/index.md", "reason": "Vue admin nested routes and workspace contracts"}
+{"file": ".trellis/spec/server/backend/index.md", "reason": "NestJS API and Prisma contracts"}

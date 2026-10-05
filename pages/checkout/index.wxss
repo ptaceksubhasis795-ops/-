@@ -1,0 +1,28 @@
+.checkout-page { padding-bottom: 58rpx; }
+.checkout-heading { margin-bottom: 28rpx; }
+.address-card { padding: 26rpx 24rpx; }
+.address-head { display: flex; align-items: center; }
+.address-pin { display: flex; align-items: center; justify-content: center; width: 44rpx; height: 44rpx; margin-right: 12rpx; border-radius: 15rpx; background: #e4f3ef; color: #0d7f75; font-size: 23rpx; }
+.address-name { color: #233531; font-size: 29rpx; font-weight: 700; }
+.address-phone { margin-left: 16rpx; color: #6f817d; font-size: 22rpx; }
+.address-arrow { margin-left: auto; color: #0d7f75; font-size: 28rpx; }
+.address-detail { display: block; margin: 14rpx 0 0 56rpx; color: #667a75; font-size: 23rpx; line-height: 1.5; }
+.address-empty { display: flex; align-items: center; color: #0d7f75; font-size: 25rpx; }
+.address-empty text:last-child { margin-left: auto; font-size: 28rpx; }
+.checkout-items, .checkout-summary { margin-top: 19rpx; padding: 25rpx; }
+.checkout-head { display: flex; align-items: baseline; justify-content: space-between; }
+.checkout-count { color: #9aa9a5; font-size: 20rpx; }
+.checkout-item { display: flex; align-items: center; margin-top: 21rpx; }
+.checkout-thumb { flex: none; width: 102rpx; height: 102rpx; border-radius: 18rpx; }
+.checkout-copy { display: flex; flex: 1; flex-direction: column; padding: 0 18rpx; color: #334643; font-size: 24rpx; }
+.checkout-copy .muted { margin-top: 9rpx; }
+.checkout-price { color: #bd6a28; font-size: 24rpx; font-weight: 700; }
+.summary-line, .summary-total { display: flex; justify-content: space-between; color: #70817d; font-size: 23rpx; }
+.summary-line + .summary-line { margin-top: 15rpx; }
+.summary-total { margin-top: 23rpx; padding-top: 21rpx; border-top: 1rpx solid #e7efec; color: #22312f; font-size: 30rpx; font-weight: 700; }
+.summary-total text:last-child { color: #bd6a28; }
+.payment-note { display: flex; align-items: center; justify-content: center; margin: 27rpx 0 20rpx; color: #9aa9a5; font-size: 20rpx; }
+.note-dot { width: 11rpx; height: 11rpx; margin-right: 9rpx; border-radius: 50%; background: #d39147; box-shadow: 0 0 0 5rpx #fff0dc; }
+.pay-button { min-height: 94rpx; }
+.pay-price { margin-left: 10rpx; color: #dff7ef; }
+.pay-arrow { margin-left: 12rpx; font-size: 28rpx; }

@@ -1,0 +1,18 @@
+.orders-page { padding-bottom: 64rpx; }
+.order-tabs { width: 100%; margin-bottom: 24rpx; white-space: nowrap; }
+.order-tab { display: inline-flex; align-items: center; justify-content: center; min-width: 126rpx; height: 60rpx; margin-right: 10rpx; border: 2rpx solid #e0e9e6; border-radius: 19rpx; background: #ffffff; color: #778984; font-size: 22rpx; }
+.order-tab.active { border-color: #0d7f75; background: #0d7f75; color: #ffffff; box-shadow: 0 8rpx 18rpx rgba(13,127,117,.18); }
+.order-card { margin-bottom: 18rpx; padding: 24rpx; }
+.order-card-head, .order-card-foot { display: flex; align-items: center; justify-content: space-between; }
+.order-card-head > view { display: flex; flex-direction: column; }
+.order-kicker { color: #9baaa6; font-size: 16rpx; letter-spacing: 2rpx; }
+.order-no { margin-top: 6rpx; color: #81918d; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 19rpx; }
+.order-status { padding: 8rpx 12rpx; border-radius: 11rpx; background: #e3f2ee; color: #248076; font-size: 20rpx; font-weight: 700; }
+.order-item { display: flex; align-items: center; margin-top: 21rpx; }
+.order-thumb { flex: none; width: 94rpx; height: 94rpx; border-radius: 16rpx; }
+.order-item-copy { display: flex; flex: 1; flex-direction: column; padding-left: 17rpx; color: #334643; font-size: 24rpx; }
+.order-item-copy .muted { margin-top: 9rpx; }
+.order-card-foot { margin-top: 23rpx; padding-top: 19rpx; border-top: 1rpx solid #e8efed; }
+.order-total { color: #bd6a28; font-size: 26rpx; font-weight: 700; }
+.orders-empty { min-height: 450rpx; }
+.empty-copy { margin-top: 12rpx; color: #a0afab; font-size: 21rpx; }

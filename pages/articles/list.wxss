@@ -1,0 +1,20 @@
+.articles-page { padding-bottom: 64rpx; }
+.article-search { display: flex; align-items: center; height: 82rpx; margin-bottom: 22rpx; padding: 0 22rpx; border: 2rpx solid #e1ebe8; border-radius: 22rpx; background: #fff; box-shadow: 0 10rpx 24rpx rgba(24,52,48,.04); }
+.article-search-symbol { margin-right: 14rpx; color: #0d7f75; font-size: 38rpx; line-height: 1; }
+.article-search input { flex: 1; color: #1f2f2d; font-size: 25rpx; }
+.article-search-clear { color: #95a6a2; font-size: 34rpx; }
+.category-tabs { display: flex; flex-direction: column; gap: 14rpx; width: 100%; margin-bottom: 22rpx; }
+.category-row { display: flex; gap: 16rpx; width: 100%; }
+.category-tab { display: flex; align-items: center; justify-content: center; flex: 1; min-width: 0; min-height: 66rpx; padding: 0 10rpx; border: 2rpx solid #dbe8e4; border-radius: 22rpx; background: #fff; color: #647a75; font-size: 20rpx; line-height: 1.25; text-align: center; }
+.category-tab.active { border-color: #0d7f75; background: #0d7f75; color: #fff; }
+.article-list { display: flex; flex-direction: column; gap: 18rpx; }
+.article-card { position: relative; display: flex; aspect-ratio: 16 / 9; min-height: 0; overflow: hidden; padding: 0; }
+.article-cover-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.article-card-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(16,44,40,.8), rgba(16,44,40,.2)); }
+.article-card-copy { position: relative; z-index: 1; display: flex; max-width: 76%; flex-direction: column; justify-content: center; padding: 36rpx; color: #fff; }
+.article-category { align-self: flex-start; padding: 7rpx 12rpx; border-radius: 9rpx; background: rgba(255,255,255,.18); font-size: 19rpx; }
+.article-title { margin-top: 18rpx; font-family: "Noto Serif SC", "Songti SC", serif; font-size: 34rpx; font-weight: 700; line-height: 1.35; }
+.article-summary { margin-top: 12rpx; color: rgba(255,255,255,.82); font-size: 22rpx; line-height: 1.5; }
+.article-read { margin-top: 20rpx; font-size: 21rpx; font-weight: 700; }
+.article-recommend { position: absolute; top: 22rpx; right: 22rpx; z-index: 2; padding: 7rpx 12rpx; border-radius: 9rpx; background: #f0c37b; color: #5c3a1e; font-size: 18rpx; }
+.article-clinical .article-card-shade { background: linear-gradient(90deg, rgba(14,78,76,.86), rgba(14,78,76,.18)); }.article-service .article-card-shade { background: linear-gradient(90deg, rgba(54,74,95,.84), rgba(54,74,95,.18)); }.article-botanical .article-card-shade { background: linear-gradient(90deg, rgba(58,87,57,.84), rgba(58,87,57,.18)); }.article-nutrition .article-card-shade { background: linear-gradient(90deg, rgba(130,76,35,.84), rgba(130,76,35,.18)); }.article-daily .article-card-shade { background: linear-gradient(90deg, rgba(75,94,68,.84), rgba(75,94,68,.18)); }.article-service-guide .article-card-shade { background: linear-gradient(90deg, rgba(33,79,83,.84), rgba(33,79,83,.18)); }.article-member .article-card-shade { background: linear-gradient(90deg, rgba(92,61,84,.84), rgba(92,61,84,.18)); }

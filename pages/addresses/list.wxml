@@ -1,0 +1,9 @@
+<view class="page-shell addresses-page">
+  <view class="page-heading"><text class="eyebrow">收货地址</text><text class="page-title">收货地址</text><text class="page-subtitle">订单会使用默认地址，也可以在结算前修改。</text></view>
+  <view wx:if="{{loading}}" class="surface empty-state"><text>正在加载地址</text></view>
+  <view wx:elif="{{errorMessage}}" class="surface empty-state"><text>{{errorMessage}}</text><view wx:if="{{errorMessage === '请先登录后管理地址'}}" class="primary-button empty-button" bindtap="openLogin">去登录</view><view class="secondary-button empty-button" bindtap="retry">重新加载</view></view>
+  <view wx:else><view wx:for="{{addresses}}" wx:key="id" class="surface address-card" bindtap="select" data-id="{{item.id}}" data-address="{{item}}"><view class="address-head"><text class="address-name">{{item.name}}</text><text class="address-phone">{{item.phone}}</text><text wx:if="{{item.isDefault}}" class="address-default">默认</text><text class="address-remove" catchtap="remove" data-id="{{item.id}}">删除</text></view><text class="address-detail">{{item.detail}}</text></view><view wx:if="{{!addresses.length}}" class="surface empty-state"><text class="empty-symbol">址</text><text>还没有收货地址</text></view></view>
+  <view wx:if="{{!editing}}" class="primary-button add-address" bindtap="add">＋ 新增收货地址</view>
+  <view wx:if="{{editing}}" class="surface address-form"><text class="block-title">编辑地址</text><input data-field="name" value="{{form.name}}" bindinput="input" placeholder="收货人姓名" /><input data-field="phone" value="{{form.phone}}" bindinput="input" type="number" placeholder="手机号" /><input data-field="detail" value="{{form.detail}}" bindinput="input" placeholder="省市区和详细地址" /><view class="address-default-row"><text>设为默认地址</text><switch checked="{{form.isDefault}}" color="#0F766E" bindchange="toggleDefault" /></view><view class="form-actions"><view class="secondary-button" bindtap="cancel">取消</view><view class="primary-button" bindtap="save">保存地址</view></view></view>
+</view>
+

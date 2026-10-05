@@ -1,0 +1,30 @@
+<view wx:if="{{loading}}" class="page-shell"><view class="surface empty-state"><text>正在加载商品</text></view></view>
+<view wx:elif="{{errorMessage}}" class="page-shell"><view class="surface empty-state"><text>{{errorMessage}}</text><view class="secondary-button empty-button" bindtap="retry">重新加载</view></view></view>
+<view class="page-shell detail-page" wx:elif="{{product}}">
+  <view class="detail-visual image-frame" style="background: {{product.color}};">
+    <image wx:if="{{product.image}}" class="product-art" src="{{product.image}}" mode="aspectFit" />
+    <image wx:if="{{product.overlay}}" class="product-overlay" src="{{product.overlay}}" mode="scaleToFill" />
+    <view wx:if="{{!product.image}}" class="product-fallback {{product.category}}"><text class="product-fallback__mark">{{product.category === 'prescription' ? '处' : '养'}}</text></view>
+    <text class="detail-badge">{{product.badge}}</text>
+    <view class="detail-visual-meta"><text>{{product.category === 'prescription' ? '处方服务' : '日常轻养'}}</text><text>编号 / 0{{product.registrationId}}</text></view>
+  </view>
+
+  <view class="surface detail-card">
+    <view class="detail-card-top"><view><text class="detail-title">{{product.name}}</text><text class="detail-subtitle">{{product.subtitle}}</text></view><text class="detail-share">分享</text></view>
+    <view class="detail-price-line"><text class="detail-price">¥{{product.displayPrice || product.price}}</text><text class="detail-original">¥{{product.originalPrice}}</text><text class="detail-unit">{{skuNameText}}</text></view>
+    <view class="detail-rule-line"><text>库存 {{product.displayStockText || product.stock}}</text><text>奖励：{{product.reward || product.rewardRule || '按后台规则'}}</text></view>
+  </view>
+
+  <view class="detail-trust"><view><text class="trust-icon">✓</text><text>正品批次</text></view><view><text class="trust-icon">处</text><text>药师服务</text></view><view><text class="trust-icon">↗</text><text>物流可查</text></view></view>
+
+  <view class="surface detail-section"><view class="detail-section-head"><text class="detail-section-title">商品说明</text><text class="detail-section-caption">说明</text></view><text class="detail-description">{{product.description}}</text><text wx:if="{{product.category === 'daily'}}" class="detail-disclaimer">保健食品不能代替药物，具体信息以产品标签和说明书为准。</text></view>
+
+  <view wx:if="{{skus.length}}" class="surface sku-panel"><view class="detail-section-head"><text class="detail-section-title">选择规格</text><text class="detail-section-caption">请选择后购买</text></view><view class="sku-list"><view wx:for="{{skus}}" wx:key="id" class="sku-option {{selectedSkuId === item.id ? 'active' : ''}}" bindtap="chooseSku" data-id="{{item.id}}"><text>{{item.name}}</text><text>¥{{item.price}}</text></view></view></view>
+
+  <view wx:if="{{product.category === 'prescription'}}" class="prescription-panel"><view class="prescription-panel__head"><text class="prescription-mark">处</text><text class="prescription-panel__title">处方购买说明</text><text class="prescription-panel__status">{{hasPrescription ? '可支付' : '需处方'}}</text></view><text class="prescription-panel__text">需绑定实名就诊人，并取得有效处方。当前账号{{hasPrescription ? '已有可支付处方' : '暂无可支付处方'}}。</text><text class="prescription-link" bindtap="openPrescription">查看我的处方 →</text></view>
+
+  <view class="quantity-row"><view><text class="quantity-label">购买数量</text><text class="quantity-hint">每单最多 99 件</text></view><view class="stepper"><text class="stepper-button" bindtap="changeQuantity" data-delta="-1">−</text><text class="stepper-number">{{quantity}}</text><text class="stepper-button" bindtap="changeQuantity" data-delta="1">＋</text></view></view>
+
+  <view class="bottom-actions"><view class="bottom-mini"><text class="bottom-mini-icon">袋</text><text>购物袋</text></view><view class="secondary-button bottom-cart" bindtap="addCart">加入购物袋</view><view class="primary-button bottom-buy" bindtap="buyNow">立即购买</view></view>
+</view>
+

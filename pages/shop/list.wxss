@@ -1,0 +1,31 @@
+.shop-page { padding-bottom: 82rpx; }
+.shop-topline { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 26rpx; }
+.shop-topline > view:first-child { display: flex; flex-direction: column; }
+.shop-caption { margin-top: 12rpx; color: #778984; font-size: 22rpx; }
+.cart-entry { position: relative; display: flex; align-items: center; justify-content: center; width: 78rpx; height: 78rpx; border: 2rpx solid #d8e7e2; border-radius: 24rpx; background: #ffffff; box-shadow: 0 8rpx 20rpx rgba(24,52,48,.05); }
+.cart-symbol { color: #0d7f75; font-size: 29rpx; font-weight: 700; }
+.cart-badge { position: absolute; top: -10rpx; right: -8rpx; display: flex; align-items: center; justify-content: center; min-width: 32rpx; height: 32rpx; padding: 0 8rpx; border: 3rpx solid #f5f7f5; border-radius: 20rpx; background: #c8792f; color: #ffffff; font-size: 17rpx; }
+.search-box { display: flex; align-items: center; height: 84rpx; padding: 0 24rpx; border: 2rpx solid #e1ebe8; border-radius: 22rpx; background: #ffffff; box-shadow: 0 10rpx 24rpx rgba(24,52,48,.04); }
+.search-symbol { margin-right: 14rpx; color: #0d7f75; font-size: 38rpx; }
+.search-box input { flex: 1; color: #1f2f2d; font-size: 25rpx; }
+.clear-symbol { color: #95a6a2; font-size: 34rpx; }
+.tabs { width: 100%; margin: 26rpx 0 20rpx; white-space: nowrap; }
+.tab { display: inline-flex; align-items: center; justify-content: center; min-width: 134rpx; height: 60rpx; margin-right: 12rpx; border: 2rpx solid #e0e9e6; border-radius: 19rpx; background: #ffffff; color: #778984; font-size: 23rpx; }
+.tab.active { border-color: #0d7f75; background: #0d7f75; color: #ffffff; box-shadow: 0 8rpx 18rpx rgba(13,127,117,.18); }
+.notice { display: flex; align-items: center; margin-bottom: 20rpx; padding: 18rpx 20rpx; border: 1rpx solid #cfe6df; border-radius: 20rpx; background: #edf8f5; color: #42736c; font-size: 21rpx; line-height: 1.45; }
+.notice-mark { display: flex; align-items: center; justify-content: center; flex: none; width: 44rpx; height: 44rpx; margin-right: 12rpx; border-radius: 14rpx; background: #0d7f75; color: #fff; font-family: "Noto Serif SC", "Songti SC", serif; font-size: 23rpx; font-weight: 700; }
+.notice-arrow { margin-left: auto; color: #0d7f75; font-size: 27rpx; }
+.catalog-meta { display: flex; align-items: center; justify-content: space-between; margin: 18rpx 4rpx 16rpx; color: #81928d; font-size: 20rpx; }
+.catalog-sort { color: #5d7771; }
+.product-list { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18rpx 0; }
+.product-card { width: 48.3%; overflow: hidden; border: 1rpx solid #e0e9e6; border-radius: 25rpx; background: #ffffff; box-shadow: 0 10rpx 28rpx rgba(24,52,48,.05); }
+.product-visual { height: 270rpx; }
+.product-badge { position: absolute; top: 16rpx; left: 16rpx; padding: 6rpx 10rpx; border-radius: 9rpx; background: rgba(255,255,255,.88); color: #51746e; font-size: 17rpx; }
+.product-main { display: flex; flex-direction: column; min-height: 152rpx; padding: 18rpx 18rpx 20rpx; }
+.product-name { overflow: hidden; color: #22312f; font-size: 26rpx; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+.product-subtitle { overflow: hidden; margin-top: 8rpx; color: #8b9b97; font-size: 19rpx; text-overflow: ellipsis; white-space: nowrap; }
+.product-bottom { display: flex; align-items: flex-end; justify-content: space-between; margin-top: auto; padding-top: 18rpx; }
+.product-price-wrap { display: flex; align-items: baseline; }
+.product-price { color: #bd6a28; font-size: 31rpx; font-weight: 700; }
+.product-original { margin-left: 7rpx; color: #b0bbb8; font-size: 17rpx; text-decoration: line-through; }
+.product-stock { color: #a0afab; font-size: 17rpx; }

@@ -1,0 +1,20 @@
+.prescriptions-page { padding-bottom: 62rpx; }
+.rx-actions { display: flex; gap: 13rpx; }
+.rx-actions view { flex: 1; min-height: 86rpx; font-size: 24rpx; }
+.button-icon { margin-right: 7rpx; font-size: 27rpx; }
+.patient-hint { display: flex; align-items: center; margin-top: 21rpx; padding: 18rpx; border: 1rpx solid #cfe6df; border-radius: 20rpx; background: #edf8f5; color: #4a746d; font-size: 21rpx; line-height: 1.5; }
+.hint-mark { display: flex; align-items: center; justify-content: center; flex: none; width: 44rpx; height: 44rpx; margin-right: 11rpx; border-radius: 14rpx; background: #0d7f75; color: #fff; font-size: 21rpx; }
+.hint-arrow { margin-left: auto; color: #0d7f75; font-size: 27rpx; }
+.rx-card { margin-top: 18rpx; padding: 24rpx; }
+.rx-card-top { display: flex; align-items: center; justify-content: space-between; }
+.rx-index { color: #a2b0ac; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 18rpx; letter-spacing: 2rpx; }
+.rx-status { padding: 8rpx 11rpx; border-radius: 10rpx; background: #e4f3ef; color: #237e74; font-size: 19rpx; }
+.rx-status.pending_review { background: #fff0dc; color: #b7682e; }
+.rx-head { margin-top: 19rpx; }
+.rx-name { display: block; color: #243632; font-family: "Noto Serif SC", "Songti SC", serif; font-size: 29rpx; font-weight: 700; }
+.rx-source { display: block; margin-top: 9rpx; color: #8b9b97; font-size: 21rpx; }
+.rx-meta { display: flex; justify-content: space-between; margin-top: 23rpx; color: #687a75; font-size: 21rpx; }
+.rx-meta text:last-child { color: #bd6a28; font-size: 26rpx; font-weight: 700; }
+.rx-pay { min-height: 76rpx; margin-top: 23rpx; font-size: 24rpx; }
+.rx-tip { display: block; margin-top: 20rpx; color: #98a7a3; font-size: 20rpx; line-height: 1.5; }
+.empty-copy { margin-top: 12rpx; color: #a0afab; font-size: 21rpx; }

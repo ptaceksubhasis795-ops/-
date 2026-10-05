@@ -1,0 +1,5 @@
+{"file":".trellis/spec/admin/frontend/index.md","reason":"Admin build and route verification requirements."}
+{"file":".trellis/spec/admin/frontend/contracts.md","reason":"Sales page, permissions, forms and destructive action contracts."}
+{"file":".trellis/spec/server/backend/contracts.md","reason":"Money, state transitions, audit and API boundaries."}
+{"file":".trellis/spec/guides/cross-layer-thinking-guide.md","reason":"Trace admin UI through API and operations service."}
+{"file":".trellis/tasks/10-03-sales-ai-visual-redesign/design.md","reason":"Approved visual and runtime design boundaries."}

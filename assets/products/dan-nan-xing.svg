@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <rect width="800" height="800" rx="96" fill="#dff2ed"/>
+  <circle cx="610" cy="190" r="130" fill="#b9e2d8" opacity=".72"/>
+  <circle cx="170" cy="660" r="180" fill="#c7e8df" opacity=".78"/>
+  <path d="M151 546c58-102 165-188 286-235 46-18 91 12 92 61 2 98-31 177-106 232-74 54-199 63-272 19z" fill="#0d7c73"/>
+  <path d="M233 554c89-93 161-148 252-199" fill="none" stroke="#f5fbf7" stroke-width="20" stroke-linecap="round" opacity=".78"/>
+  <path d="M334 466c-33-54-22-102 26-130 41 47 38 93-26 130z" fill="#f1bf68"/>
+  <path d="M409 416c-2-61 28-98 83-106 13 61-16 97-83 106z" fill="#f7d990"/>
+  <text x="68" y="104" fill="#12625d" font-family="serif" font-size="30" font-weight="700" letter-spacing="6">JZ HERBAL</text>
+  <text x="68" y="744" fill="#12625d" font-family="sans-serif" font-size="34" font-weight="700">胆南星 · 直服饮片</text>
+</svg>

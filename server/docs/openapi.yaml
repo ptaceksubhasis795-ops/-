@@ -1,0 +1,72 @@
+openapi: 3.0.3
+info:
+  title: 九转健康商城 API
+  version: 0.1.0
+servers:
+  - url: /api/v1
+paths:
+  /health:
+    get:
+      summary: 服务健康检查
+      responses:
+        '200': { description: OK }
+  /catalog/products:
+    get:
+      summary: 商品列表
+      parameters:
+        - { name: category, in: query, schema: { type: string, enum: [all, daily, prescription] } }
+        - { name: keyword, in: query, schema: { type: string } }
+      responses:
+        '200': { description: 商品列表 }
+  /orders:
+    get:
+      summary: 订单列表
+      responses:
+        '200': { description: 订单列表 }
+    post:
+      summary: 创建订单
+      parameters:
+        - { name: Idempotency-Key, in: header, required: true, schema: { type: string } }
+      responses:
+        '201': { description: 订单已创建 }
+  /orders/{id}/{action}:
+    post:
+      summary: 订单状态动作
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+        - { name: action, in: path, required: true, schema: { type: string, enum: [pay, cancel, ship, receive] } }
+      responses:
+        '200': { description: 状态已更新 }
+  /prescriptions:
+    get: { summary: 处方列表, responses: { '200': { description: 处方列表 } } }
+    post: { summary: 提交线下处方, responses: { '201': { description: 已提交 } } }
+  /prescriptions/{id}/review:
+    post: { summary: 药师审核处方, responses: { '200': { description: 审核完成 } } }
+  /sales/overview:
+    get: { summary: 销售中心概览, responses: { '200': { description: 概览 } } }
+  /withdrawals:
+    post: { summary: 申请提现, responses: { '201': { description: 已提交 } } }
+  /auth/wechat/login:
+    post: { summary: 微信登录/演示登录, responses: { '200': { description: 会话 token } } }
+  /patients:
+    get: { summary: 就诊人列表, responses: { '200': { description: 就诊人列表 } } }
+    post: { summary: 保存就诊人, responses: { '201': { description: 就诊人已保存 } } }
+  /addresses:
+    get: { summary: 地址列表, responses: { '200': { description: 地址列表 } } }
+    post: { summary: 保存地址, responses: { '201': { description: 地址已保存 } } }
+  /aftersales:
+    post: { summary: 申请售后, responses: { '201': { description: 售后已提交 } } }
+  /invoices:
+    post: { summary: 申请电子发票, responses: { '201': { description: 发票已提交 } } }
+  /admin/jobs/reconcile:
+    post: { summary: 执行订单自动任务, responses: { '200': { description: 已执行超时取消和自动收货 } } }
+  /admin/rewards/settle:
+    post: { summary: 执行周结算, responses: { '200': { description: 奖励已结算 } } }
+  /payments/wechat/jsapi:
+    post: { summary: 创建微信 JSAPI 支付, responses: { '200': { description: 预支付参数或人工模式 } } }
+  /payments/wechat/notify:
+    post: { summary: 微信支付回调, responses: { '200': { description: 回调已处理 } } }
+  /payments/refund:
+    post: { summary: 微信退款, responses: { '200': { description: 退款结果 } } }
+  /withdrawals/{id}/transfer:
+    post: { summary: 微信商家转账, responses: { '200': { description: 转账结果 } } }

@@ -1,0 +1,76 @@
+name: jz-health
+
+services:
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: jz_health
+      MYSQL_USER: jz
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-change-me}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-change-root-me}
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p$${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  api:
+    build:
+      context: ./server
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATABASE_URL: mysql://jz:${MYSQL_PASSWORD:-change-me}@mysql:3306/jz_health
+      REDIS_URL: redis://redis:6379
+      REPOSITORY_MODE: prisma
+      PRISMA_SEED_ON_BOOT: ${PRISMA_SEED_ON_BOOT:-false}
+      AUTH_SECRET: ${AUTH_SECRET:-change-auth-secret}
+      STAFF_ACCOUNTS_JSON: ${STAFF_ACCOUNTS_JSON:-[]}
+      FIELD_ENCRYPTION_KEY: ${FIELD_ENCRYPTION_KEY:-change-field-secret}
+      WECHAT_APPID: ${WECHAT_APPID:-}
+      WECHAT_SECRET: ${WECHAT_SECRET:-}
+      WECHAT_MCHID: ${WECHAT_MCHID:-}
+      WECHAT_API_V3_KEY: ${WECHAT_API_V3_KEY:-}
+      WECHAT_SERIAL_NO: ${WECHAT_SERIAL_NO:-}
+      WECHAT_PRIVATE_KEY_PATH: ${WECHAT_PRIVATE_KEY_PATH:-/run/secrets/wechat-private-key.pem}
+      WECHAT_PLATFORM_CERT_PATH: ${WECHAT_PLATFORM_CERT_PATH:-/run/secrets/wechat-platform-cert.pem}
+      WECHAT_NOTIFY_URL: ${WECHAT_NOTIFY_URL:-}
+      PUBLIC_API_BASE_URL: ${PUBLIC_API_BASE_URL:-}
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./secrets:/run/secrets:ro
+
+  admin:
+    build:
+      context: ./admin
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "5174:80"
+
+volumes:
+  mysql_data:
+  redis_data:

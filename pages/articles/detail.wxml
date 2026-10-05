@@ -1,0 +1,9 @@
+<view wx:if="{{loading}}" class="page-shell"><view class="surface empty-state"><text>正在加载文章</text></view></view>
+<view wx:elif="{{errorMessage}}" class="page-shell"><view class="surface empty-state"><text>{{errorMessage}}</text><view class="secondary-button empty-button" bindtap="retry">重新加载</view></view></view>
+<view class="page-shell article-detail-page {{category.theme}}" wx:elif="{{article}}">
+  <view class="article-hero"><image class="article-hero-image" src="{{article.coverImage || category.image}}" mode="aspectFill" /><view class="article-hero-shade"></view><view class="article-hero-copy"><text class="article-detail-index">{{category.name}}</text><text class="article-tag">{{category.shortName}}</text><text class="article-detail-title">{{article.title}}</text><text class="article-detail-summary">{{article.summary}}</text></view></view>
+  <view class="article-outline"><text class="outline-mark">{{category.icon}}</text><text>{{category.description}}</text></view>
+  <view class="surface article-body"><text class="body-paragraph">{{article.body}}</text><view class="article-divider"></view><text class="body-paragraph article-notice">健康信息用于服务场景时，请先完成授权。具体规则以小程序页面和后台实际状态为准。</text></view>
+  <view wx:if="{{relatedProducts.length}}" class="surface related-products"><text class="block-title">本文相关商品</text><view wx:for="{{relatedProducts}}" wx:key="id" class="related-product" bindtap="openRelatedProduct" data-id="{{item.id}}"><text>{{item.name}}</text><text class="related-price">¥{{item.price}} →</text></view></view>
+  <view class="article-actions"><view class="secondary-button" bindtap="share">分享文章</view><view class="primary-button" bindtap="handleArticleAction">{{relatedProducts.length ? '查看相关商品' : article.jumpToShop ? '进入商城' : category.key === 'prescription-guide' || category.key === 'clinic-service' ? '去问诊开方' : '继续浏览'}}</view></view>
+</view>

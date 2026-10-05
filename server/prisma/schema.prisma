@@ -1,0 +1,669 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  CONSUMER
+  MEMBER
+  SENIOR_MEMBER
+  SALES
+  ADMIN
+  PHARMACIST
+  FULFILLMENT
+}
+
+enum ProductCategory {
+  DAILY
+  PRESCRIPTION
+}
+
+enum OrderStatus {
+  PENDING_PAYMENT
+  PAID
+  SHIPPED
+  COMPLETED
+  CANCELLED
+  REFUNDING
+  REFUNDED
+}
+
+enum PrescriptionStatus {
+  PENDING_REVIEW
+  APPROVED
+  REJECTED
+  USED
+  EXPIRED
+}
+
+enum RewardStatus {
+  PENDING
+  ELIGIBLE
+  SETTLED
+  REVERSED
+  VOID
+}
+
+enum WithdrawalStatus {
+  PENDING_REVIEW
+  APPROVED
+  PROCESSING
+  PAID
+  REJECTED
+}
+
+enum AttributionOwnerKind {
+  COMPANY
+  SALES
+  MEMBER
+}
+
+enum PerformanceKind {
+  DIRECT
+  SELF
+}
+
+enum RewardWalletKind {
+  EARN
+  REVERSAL
+  WITHDRAWAL_HOLD
+  WITHDRAWAL_RELEASE
+  WITHDRAWAL_PAID
+}
+
+enum SalesOrderDraftStatus {
+  SENT
+  CUSTOMER_CONFIRMED
+  PAID
+  EXPIRED
+  CANCELLED
+}
+
+model User {
+  id              String          @id @default(cuid())
+  openId          String          @unique
+  phoneCiphertext String?         @db.VarChar(255)
+  phoneMasked     String?         @db.VarChar(32)
+  nickname        String?         @db.VarChar(80)
+  role            UserRole        @default(CONSUMER)
+  memberLevel     String?         @db.VarChar(40)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  patients        Patient[]
+  addresses       Address[]
+  orders          Order[]
+  prescriptions   Prescription[]
+  auditLogs       AuditLog[]
+  healthConsents  HealthConsent[]
+}
+
+model Patient {
+  id              String   @id @default(cuid())
+  userId          String
+  name            String   @db.VarChar(80)
+  idNoCiphertext  String   @db.VarChar(255)
+  phoneCiphertext String   @db.VarChar(255)
+  relation        String   @db.VarChar(32)
+  allergies       String?  @db.Text
+  medicalHistory  String?  @db.Text
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  user            User     @relation(fields: [userId], references: [id])
+}
+
+model Address {
+  id              String  @id @default(cuid())
+  userId          String
+  name            String  @db.VarChar(80)
+  phoneCiphertext String  @db.VarChar(255)
+  phoneMasked     String  @db.VarChar(32)
+  detail          String  @db.VarChar(255)
+  isDefault       Boolean @default(false)
+  user            User    @relation(fields: [userId], references: [id])
+}
+
+model Product {
+  id          String          @id @default(cuid())
+  name        String          @db.VarChar(160)
+  category    ProductCategory
+  description String?         @db.Text
+  imageKey    String?         @db.LongText
+  active      Boolean         @default(false)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  skus        ProductSku[]
+  orderItems  OrderItem[]
+  rewardRules RewardRule[]
+}
+
+model ProductSku {
+  id         String           @id @default(cuid())
+  productId  String
+  name       String           @db.VarChar(120)
+  priceFen   Int
+  stock      Int              @default(0)
+  active     Boolean          @default(true)
+  product    Product          @relation(fields: [productId], references: [id])
+  batches    InventoryBatch[]
+  orderItems OrderItem[]
+}
+
+model InventoryBatch {
+  id               String            @id @default(cuid())
+  skuId            String
+  batchNo          String            @db.VarChar(80)
+  expiresAt        DateTime?
+  quantity         Int               @default(0)
+  reservedQuantity Int               @default(0)
+  active           Boolean           @default(true)
+  sku              ProductSku        @relation(fields: [skuId], references: [id])
+  ledgers          InventoryLedger[]
+}
+
+model InventoryLedger {
+  id          String         @id @default(cuid())
+  batchId     String
+  delta       Int
+  reason      String         @db.VarChar(80)
+  referenceId String?
+  createdAt   DateTime       @default(now())
+  batch       InventoryBatch @relation(fields: [batchId], references: [id])
+}
+
+model Prescription {
+  id          String             @id @default(cuid())
+  userId      String
+  patientName String             @db.VarChar(80)
+  patientId   String?
+  productId   String?
+  skuId       String?
+  itemName    String?            @db.VarChar(160)
+  source      String             @db.VarChar(40)
+  status      PrescriptionStatus @default(PENDING_REVIEW)
+  validUntil  DateTime?
+  fileKey     String?            @db.VarChar(255)
+  reviewerId  String?
+  reviewedAt  DateTime?
+  usedAt      DateTime?
+  createdAt   DateTime           @default(now())
+  user        User               @relation(fields: [userId], references: [id])
+  orders      Order[]
+}
+
+model Order {
+  id              String         @id @default(cuid())
+  orderNo         String         @unique @db.VarChar(32)
+  userId          String
+  prescriptionId  String?
+  promoterId      String?
+  status          OrderStatus    @default(PENDING_PAYMENT)
+  amountFen       Int
+  freightFen      Int
+  totalFen        Int
+  addressSnapshot Json
+  createdAt       DateTime       @default(now())
+  paidAt          DateTime?
+  shippedAt       DateTime?
+  receivedAt      DateTime?
+  user            User           @relation(fields: [userId], references: [id])
+  prescription    Prescription?  @relation(fields: [prescriptionId], references: [id])
+  items           OrderItem[]
+  payments        Payment[]
+  shipments       Shipment[]
+  aftersales      Aftersale[]
+  invoices        Invoice[]
+  rewards         RewardLedger[]
+  refunds         Refund[]
+}
+
+model OrderItem {
+  id        String     @id @default(cuid())
+  orderId   String
+  productId String
+  skuId     String
+  name      String     @db.VarChar(160)
+  quantity  Int
+  unitFen   Int
+  order     Order      @relation(fields: [orderId], references: [id])
+  product   Product    @relation(fields: [productId], references: [id])
+  sku       ProductSku @relation(fields: [skuId], references: [id])
+}
+
+model Payment {
+  id            String   @id @default(cuid())
+  orderId       String
+  provider      String   @db.VarChar(40)
+  transactionId String?  @db.VarChar(120)
+  amountFen     Int
+  status        String   @db.VarChar(40)
+  rawPayload    Json?
+  createdAt     DateTime @default(now())
+  order         Order    @relation(fields: [orderId], references: [id])
+}
+
+model Refund {
+  id             String   @id @default(cuid())
+  orderId        String
+  aftersaleId    String?
+  amountFen      Int
+  status         String   @db.VarChar(32)
+  provider       String   @db.VarChar(40)
+  transactionId  String?  @db.VarChar(120)
+  idempotencyKey String   @unique @db.VarChar(160)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  order          Order    @relation(fields: [orderId], references: [id])
+
+  @@index([orderId, status])
+}
+
+model Shipment {
+  id         String   @id @default(cuid())
+  orderId    String
+  carrier    String   @db.VarChar(80)
+  trackingNo String   @db.VarChar(120)
+  status     String   @db.VarChar(40)
+  createdAt  DateTime @default(now())
+  order      Order    @relation(fields: [orderId], references: [id])
+}
+
+model Aftersale {
+  id        String   @id @default(cuid())
+  orderId   String
+  reason    String   @db.VarChar(120)
+  status    String   @db.VarChar(40)
+  note      String?  @db.Text
+  createdAt DateTime @default(now())
+  order     Order    @relation(fields: [orderId], references: [id])
+}
+
+model Invoice {
+  id        String   @id @default(cuid())
+  orderId   String
+  type      String   @db.VarChar(20)
+  title     String   @db.VarChar(160)
+  taxNo     String?  @db.VarChar(80)
+  fileKey   String?  @db.VarChar(255)
+  status    String   @db.VarChar(40)
+  createdAt DateTime @default(now())
+  order     Order    @relation(fields: [orderId], references: [id])
+}
+
+model PromoterRelation {
+  id         String    @id @default(cuid())
+  promoterId String
+  customerId String
+  source     String    @db.VarChar(40)
+  active     Boolean   @default(true)
+  createdAt  DateTime  @default(now())
+  releasedAt DateTime?
+
+  @@index([promoterId, active])
+  @@index([customerId, active])
+}
+
+model Promoter {
+  id             String    @id @default(cuid())
+  userId         String?   @unique
+  type           String    @db.VarChar(32)
+  level          String    @db.VarChar(40)
+  name           String    @db.VarChar(80)
+  active         Boolean   @default(true)
+  upgradedAt     DateTime?
+  inactiveAt     DateTime?
+  inactiveReason String?   @db.VarChar(255)
+  createdAt      DateTime  @default(now())
+}
+
+model PromoterMembership {
+  id               String    @id @default(cuid())
+  memberPromoterId String
+  salesPromoterId  String
+  status           String    @db.VarChar(32)
+  source           String    @db.VarChar(40)
+  reason           String?   @db.VarChar(255)
+  assignedBy       String?
+  createdAt        DateTime  @default(now())
+  releasedAt       DateTime?
+
+  @@index([memberPromoterId, status])
+  @@index([salesPromoterId, status])
+}
+
+model CustomerAttribution {
+  id              String               @id @default(cuid())
+  customerId      String
+  ownerKind       AttributionOwnerKind
+  ownerPromoterId String?
+  source          String               @db.VarChar(40)
+  active          Boolean              @default(true)
+  boundAt         DateTime             @default(now())
+  releasedAt      DateTime?
+  releaseReason   String?              @db.VarChar(255)
+  assignedBy      String?
+
+  @@index([customerId, active])
+  @@index([ownerPromoterId, active])
+}
+
+model PerformanceLedger {
+  id           String          @id @default(cuid())
+  orderId      String
+  customerId   String
+  promoterId   String?
+  amountFen    Int
+  selfPurchase Boolean         @default(false)
+  kind         PerformanceKind @default(DIRECT)
+  status       String          @default("active") @db.VarChar(20)
+  cancelledAt  DateTime?
+  period       String          @db.VarChar(7)
+  createdAt    DateTime        @default(now())
+
+  @@unique([orderId, promoterId])
+  @@index([promoterId, period])
+  @@index([customerId, createdAt])
+}
+
+model RewardWalletEntry {
+  id          String           @id @default(cuid())
+  promoterId  String
+  kind        RewardWalletKind
+  amountFen   Int
+  referenceId String?
+  createdAt   DateTime         @default(now())
+
+  @@index([promoterId, createdAt])
+}
+
+model SalesOrderDraft {
+  id          String                @id @default(cuid())
+  token       String                @unique @db.VarChar(120)
+  promoterId  String
+  customerId  String
+  items       Json
+  status      SalesOrderDraftStatus @default(SENT)
+  orderId     String?
+  expiresAt   DateTime
+  confirmedAt DateTime?
+  createdAt   DateTime              @default(now())
+
+  @@index([promoterId, status])
+  @@index([customerId, status])
+}
+
+model MemberApplication {
+  id                      String    @id @default(cuid())
+  userId                  String
+  name                    String    @db.VarChar(80)
+  phoneMasked             String    @db.VarChar(32)
+  recommender             String?   @db.VarChar(80)
+  referrerPromoterId      String?   @db.VarChar(191)
+  resolvedSalesPromoterId String?   @db.VarChar(191)
+  sourceType              String    @default("direct") @db.VarChar(32)
+  needsAttributionReview  Boolean   @default(false)
+  reviewNote              String?   @db.VarChar(500)
+  status                  String    @db.VarChar(32)
+  reviewedBy              String?
+  reviewedAt              DateTime?
+  createdAt               DateTime  @default(now())
+
+  @@index([status, createdAt])
+  @@index([sourceType, status, createdAt])
+}
+
+model PromotionApplication {
+  id                     String    @id @default(cuid())
+  userId                 String
+  memberPromoterId       String
+  status                 String    @default("pending") @db.VarChar(32)
+  criteria               String    @db.VarChar(40)
+  monthlySnapshot        Json
+  totalAmountFen         Int
+  currentSalesPromoterId String?   @db.VarChar(191)
+  reviewerId             String?
+  reviewReason           String?   @db.VarChar(500)
+  submittedAt            DateTime  @default(now())
+  reviewedAt             DateTime?
+  createdAt              DateTime  @default(now())
+
+  @@index([userId, status, createdAt])
+  @@index([status, submittedAt])
+  @@index([memberPromoterId, status])
+}
+
+model PromoterArchive {
+  id                 String                @id @default(cuid())
+  originalPromoterId String
+  userId             String?
+  type               String                @db.VarChar(32)
+  level              String                @db.VarChar(40)
+  name               String                @db.VarChar(80)
+  deletionReason     String?               @db.VarChar(500)
+  deletedBy          String
+  deletedAt          DateTime              @default(now())
+  orderCount         Int                   @default(0)
+  rewardCount        Int                   @default(0)
+  relationCount      Int                   @default(0)
+  totalRewardFen     Int                   @default(0)
+  createdAt          DateTime              @default(now())
+  items              PromoterArchiveItem[]
+
+  @@index([originalPromoterId, deletedAt])
+  @@index([userId, deletedAt])
+}
+
+model PromoterArchiveItem {
+  id         String          @id @default(cuid())
+  archiveId  String
+  kind       String          @db.VarChar(32)
+  originalId String?
+  amountFen  Int?
+  occurredAt DateTime?
+  payload    Json
+  archive    PromoterArchive @relation(fields: [archiveId], references: [id], onDelete: Cascade)
+
+  @@index([archiveId, kind, occurredAt])
+  @@index([originalId])
+}
+
+model HealthConsent {
+  id          String    @id @default(cuid())
+  userId      String
+  version     String    @db.VarChar(40)
+  consentType String    @db.VarChar(40)
+  granted     Boolean
+  grantedAt   DateTime  @default(now())
+  revokedAt   DateTime?
+  user        User      @relation(fields: [userId], references: [id])
+
+  @@index([userId, consentType])
+}
+
+model Customer {
+  id         String   @id
+  name       String   @db.VarChar(80)
+  promoterId String?  @db.VarChar(191)
+  lastOrder  String?  @db.VarChar(160)
+  amountFen  Int      @default(0)
+  tags       Json?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model CustomerTag {
+  id         String   @id @default(cuid())
+  customerId String
+  tag        String   @db.VarChar(80)
+  createdAt  DateTime @default(now())
+
+  @@unique([customerId, tag])
+}
+
+model Article {
+  id          String   @id @default(cuid())
+  title       String   @db.VarChar(180)
+  tag         String   @db.VarChar(60)
+  summary     String?  @db.Text
+  body        String   @db.LongText
+  category    String?  @db.VarChar(60)
+  productIds  Json?
+  jumpToShop  Boolean  @default(false)
+  jumpTarget  String?  @db.VarChar(255)
+  published   Boolean  @default(false)
+  recommended Boolean  @default(false)
+  coverMode   String?  @db.VarChar(20)
+  coverKey    String?  @db.LongText
+  coverWidth  Int?
+  coverHeight Int?
+  updatedBy   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Banner {
+  id        String   @id @default(cuid())
+  title     String   @db.VarChar(120)
+  imageKey  String   @db.LongText
+  target    String   @db.VarChar(255)
+  active    Boolean  @default(false)
+  sort      Int      @default(0)
+  mode      String   @default("custom") @db.VarChar(20)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SystemSetting {
+  key       String   @id @db.VarChar(100)
+  valueJson Json
+  updatedBy String?
+  updatedAt DateTime @updatedAt
+}
+
+model OutboxTask {
+  id          String    @id @default(cuid())
+  provider    String    @db.VarChar(40)
+  type        String    @db.VarChar(80)
+  referenceId String?
+  payload     Json
+  status      String    @db.VarChar(32)
+  attempts    Int       @default(0)
+  nextRunAt   DateTime?
+  lastError   String?   @db.Text
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([status, nextRunAt])
+}
+
+model RewardRule {
+  id           String  @id @default(cuid())
+  productId    String
+  promoterType String  @db.VarChar(40)
+  rateBps      Int?
+  fixedFen     Int?
+  active       Boolean @default(true)
+  product      Product @relation(fields: [productId], references: [id])
+}
+
+model RewardRuleSet {
+  id        String           @id @default(cuid())
+  productId String           @unique
+  active    Boolean          @default(true)
+  migrationNeedsReview Boolean @default(false)
+  updatedBy String?
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+  tiers     RewardRuleTier[]
+}
+
+model RewardRuleTier {
+  id        String        @id @default(cuid())
+  ruleSetId String
+  tier      String        @db.VarChar(32)
+  method    String        @db.VarChar(16)
+  rateBps   Int           @default(0)
+  fixedFen  Int           @default(0)
+  active    Boolean       @default(true)
+  ruleSet   RewardRuleSet @relation(fields: [ruleSetId], references: [id], onDelete: Cascade)
+
+  @@unique([ruleSetId, tier])
+  @@index([tier, active])
+}
+
+model RewardLedger {
+  id                String       @id @default(cuid())
+  orderId           String
+  promoterId        String
+  amountFen         Int
+  status            RewardStatus @default(PENDING)
+  effectiveAt       DateTime?
+  settledAt         DateTime?
+  orderItemId       String?      @db.VarChar(191)
+  customerId        String?      @db.VarChar(191)
+  ruleId            String?      @db.VarChar(191)
+  baseAmountFen     Int?
+  holdUntil         DateTime?
+  reversedAmountFen Int?
+  beneficiaryKind   String?      @db.VarChar(20)
+  selfPurchase      Boolean      @default(false)
+  settlementId      String?      @db.VarChar(191)
+  createdAt         DateTime     @default(now())
+  order             Order        @relation(fields: [orderId], references: [id])
+}
+
+model Settlement {
+  id            String   @id @default(cuid())
+  period        String   @db.VarChar(32)
+  commissionIds Json
+  totalFen      Int
+  count         Int
+  status        String   @db.VarChar(32)
+  settledAt     DateTime
+  actorId       String
+  createdAt     DateTime @default(now())
+
+  @@index([period, status])
+}
+
+model Withdrawal {
+  id              String           @id @default(cuid())
+  promoterId      String
+  amountFen       Int
+  status          WithdrawalStatus @default(PENDING_REVIEW)
+  reviewedBy      String?
+  reservedFen     Int              @default(0)
+  transactionId   String?          @db.VarChar(120)
+  manualReference String?          @db.VarChar(160)
+  failureReason   String?          @db.VarChar(255)
+  paidAt          DateTime?
+  createdAt       DateTime         @default(now())
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  actorId    String
+  action     String   @db.VarChar(100)
+  resource   String   @db.VarChar(80)
+  resourceId String?  @db.VarChar(80)
+  metadata   Json?
+  createdAt  DateTime @default(now())
+  actor      User     @relation(fields: [actorId], references: [id])
+}
+
+model FileAsset {
+  id           String   @id @default(cuid())
+  ownerId      String
+  purpose      String   @db.VarChar(32)
+  originalName String   @db.VarChar(255)
+  mimeType     String   @db.VarChar(120)
+  size         Int
+  storageKey   String?  @db.VarChar(255)
+  data         String?  @db.LongText
+  createdAt    DateTime @default(now())
+
+  @@index([ownerId, purpose, createdAt])
+}

@@ -1,0 +1,24 @@
+.upload-page { padding-bottom: 58rpx; }
+.page-heading { margin-bottom: 28rpx; }
+.eyebrow { display: block; color: #0f766e; font-size: 19rpx; letter-spacing: 2rpx; }
+.page-title { display: block; margin-top: 8rpx; color: #111827; font-size: 42rpx; font-weight: 700; }
+.page-subtitle { display: block; margin-top: 14rpx; color: #64748b; font-size: 23rpx; line-height: 1.5; }
+.form-card { padding: 30rpx; }
+.field-label { display: block; color: #1f2937; font-size: 27rpx; font-weight: 700; }
+.field-gap { margin-top: 34rpx; }
+.picker-row { display: flex; align-items: center; justify-content: space-between; height: 82rpx; margin-top: 14rpx; padding: 0 22rpx; border: 2rpx solid #e4ecec; border-radius: 14rpx; color: #334155; font-size: 25rpx; }
+.muted { color: #94a3b8; }
+.upload-zone { display: flex; align-items: center; flex-direction: column; justify-content: center; min-height: 300rpx; margin-top: 14rpx; overflow: hidden; border: 2rpx dashed #9dd5ce; border-radius: 22rpx; background: #f3fbf9; color: #35645f; font-size: 24rpx; }
+.upload-placeholder { display: flex; align-items: center; flex-direction: column; justify-content: center; }
+.upload-preview { display: block; width: 100%; height: 300rpx; }
+.upload-icon { margin-bottom: 12rpx; color: #0f766e; font-size: 60rpx; font-weight: 300; }
+.upload-selected { color: #0f766e; font-weight: 700; }
+.upload-tip { margin-top: 12rpx; padding-bottom: 15rpx; color: #94a3b8; font-size: 20rpx; }
+.consent-row { display: flex; align-items: flex-start; margin-top: 26rpx; color: #64748b; font-size: 21rpx; line-height: 1.5; }
+.consent-check { display: flex; align-items: center; justify-content: center; flex: none; width: 30rpx; height: 30rpx; margin-right: 10rpx; border-radius: 8rpx; background: #0f766e; color: #fff; font-size: 20rpx; }
+.submit-button { margin-top: 24rpx; }
+.submitted-card { display: flex; align-items: center; flex-direction: column; padding: 50rpx 34rpx; text-align: center; }
+.success-mark { display: flex; align-items: center; justify-content: center; width: 92rpx; height: 92rpx; border-radius: 50%; background: #dff4ee; color: #0f766e; font-size: 54rpx; }
+.submitted-title { margin-top: 24rpx; color: #1f2937; font-size: 32rpx; font-weight: 700; }
+.submitted-copy { margin-top: 16rpx; color: #64748b; font-size: 24rpx; line-height: 1.6; }
+.submitted-button { width: 100%; margin-top: 32rpx; }

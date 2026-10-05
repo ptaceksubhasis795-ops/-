@@ -1,0 +1,38 @@
+{
+  "setting": {
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "uglifyFileName": false,
+    "enhance": true,
+    "packNpmRelationList": [],
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useCompilerPlugins": false,
+    "minifyWXML": true
+  },
+  "compileType": "miniprogram",
+  "simulatorPluginLibVersion": {},
+  "packOptions": {
+    "ignore": [
+      { "type": "folder", "value": "server" },
+      { "type": "folder", "value": "admin" },
+      { "type": "folder", "value": "docs" },
+      { "type": "folder", "value": "tests" },
+      { "type": "folder", "value": "借鉴项目" },
+      { "type": "file", "value": "assets/banners/daily-care.png" },
+      { "type": "file", "value": "assets/banners/prescription-care.png" },
+      { "type": "file", "value": "assets/overlays/botanical-linework.png" },
+      { "type": "file", "value": "assets/overlays/amber-orbit.png" },
+      { "type": "file", "value": "诉求确认-27日再标注 (1).docx" },
+      { "type": "file", "value": "微信小程序-一期PRD.md" },
+      { "type": "file", "value": "微信小程序-技术架构建议.md" }
+    ],
+    "include": []
+  },
+  "appid": "wxd34ab5df93d58545",
+  "editorSetting": {}
+}

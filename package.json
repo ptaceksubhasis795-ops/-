@@ -1,0 +1,14 @@
+{
+  "name": "jz-health-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "九转健康商城：微信小程序、销售中心、管理后台与服务端",
+  "scripts": {
+    "api:dev": "npm --prefix server run dev",
+    "api:build": "npm --prefix server run build",
+    "api:lint": "npm --prefix server run lint",
+    "admin:dev": "npm --prefix admin run dev",
+    "admin:build": "npm --prefix admin run build",
+    "mini:check": "node scripts/check-mini-project.js"
+  }
+}

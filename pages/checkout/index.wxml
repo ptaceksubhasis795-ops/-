@@ -1,0 +1,14 @@
+<view class="page-shell checkout-page">
+  <view class="checkout-heading"><text class="eyebrow">确认订单</text><text class="page-title">确认订单</text><text class="page-subtitle">确认地址和商品信息后，再提交支付。</text></view>
+  <view wx:if="{{loading}}" class="surface empty-state"><text>正在核算订单金额</text></view>
+  <view wx:elif="{{errorMessage}}" class="surface empty-state"><text>{{errorMessage}}</text><view wx:if="{{errorMessage === '请先登录后结算' || errorMessage === '请先绑定手机号后结算'}}" class="primary-button empty-button" bindtap="openLogin">去登录并绑定手机号</view><view class="secondary-button empty-button" bindtap="retry">重新加载</view></view>
+  <view wx:else>
+  <view class="surface address-card" bindtap="chooseAddress"><view wx:if="{{address}}"><view class="address-head"><text class="address-pin">⌖</text><text class="address-name">{{address.name}}</text><text class="address-phone">{{address.phone}}</text><text class="address-arrow">→</text></view><text class="address-detail">{{address.detail}}</text></view><view wx:else class="address-empty"><text class="address-pin">⌖</text><text>请填写收货地址</text><text>→</text></view></view>
+  <view class="surface checkout-items"><view class="checkout-head"><text class="block-title">商品清单</text><text class="checkout-count">{{items.length}} 件</text></view><view wx:for="{{items}}" wx:key="cartKey" class="checkout-item"><view class="checkout-thumb image-frame" style="background: {{item.product.color}};"><image wx:if="{{item.product.image}}" class="product-art" src="{{item.product.image}}" mode="aspectFit" /><image wx:if="{{item.product.overlay}}" class="product-overlay" src="{{item.product.overlay}}" mode="scaleToFill" /><view wx:if="{{!item.product.image}}" class="product-fallback {{item.product.category}}"><text class="product-fallback__mark">{{item.product.category === 'prescription' ? '处' : '养'}}</text></view></view><view class="checkout-copy"><text>{{item.product.name}}</text><text class="muted">{{item.skuName || item.product.unit}} · ×{{item.quantity}}</text></view><text class="checkout-price">¥{{item.lineTotalText}}</text></view></view>
+  <view class="surface checkout-summary"><view class="summary-line"><text>商品小计</text><text>¥{{subtotalText}}</text></view><view class="summary-line"><text>运费</text><text>{{freightText}}</text></view><view class="summary-total"><text>应付合计</text><text>¥{{totalText}}</text></view></view>
+  <view class="payment-note"><text class="note-dot"></text><text wx:if="{{demoMode}}">演示支付 · 不会产生真实扣款</text><text wx:else>微信支付 · 支付成功后订单进入待发货</text></view>
+  <view class="primary-button pay-button" bindtap="pay">{{paying ? '正在提交…' : '确认支付'}} <text class="pay-price">¥{{totalText}}</text><text class="pay-arrow">→</text></view>
+  </view>
+</view>
+
+

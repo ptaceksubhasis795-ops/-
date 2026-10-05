@@ -1,0 +1,18 @@
+.article-detail-page { padding-bottom: 64rpx; }
+.article-hero { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 28rpx; background: #e8f1ef; }
+.article-hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.article-hero-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,44,40,.08), rgba(16,44,40,.83)); }
+.article-hero-copy { position: absolute; right: 30rpx; bottom: 30rpx; left: 30rpx; color: #fff; }
+.article-detail-index { display: block; color: rgba(255,255,255,.78); font-size: 20rpx; font-weight: 700; }
+.article-tag { display: inline-flex; margin-top: 14rpx; padding: 7rpx 12rpx; border-radius: 9rpx; background: rgba(255,255,255,.18); color: #fff; font-size: 20rpx; }
+.article-detail-title { display: block; margin-top: 15rpx; font-family: "Noto Serif SC", "Songti SC", serif; font-size: 42rpx; font-weight: 700; line-height: 1.35; }
+.article-detail-summary { display: block; margin-top: 12rpx; color: rgba(255,255,255,.82); font-size: 24rpx; line-height: 1.55; }
+.article-outline { display: flex; align-items: center; gap: 16rpx; margin: 20rpx 0; padding: 22rpx; border: 2rpx solid #dcebe7; border-radius: 22rpx; background: #f2f8f6; color: #59736e; font-size: 23rpx; line-height: 1.6; }
+.outline-mark { display: flex; align-items: center; justify-content: center; flex: none; width: 56rpx; height: 56rpx; border-radius: 16rpx; background: #0d7f75; color: #fff; font-family: "Noto Serif SC", "Songti SC", serif; font-size: 28rpx; font-weight: 700; }
+.article-body { padding: 31rpx 28rpx; }
+.body-paragraph { display: block; color: #3a4e49; font-size: 27rpx; line-height: 1.95; white-space: pre-wrap; }
+.article-divider { height: 2rpx; margin: 27rpx 0 23rpx; background: #e6efec; }
+.article-notice { color: #758783; font-size: 23rpx; }
+.related-products { margin-top: 20rpx; padding: 24rpx; }.related-product { display: flex; justify-content: space-between; padding: 19rpx 0; border-bottom: 2rpx solid #edf2f0; color: #3a4e49; font-size: 24rpx; }.related-price { color: #bd6a28; font-weight: 700; }
+.article-actions { display: flex; gap: 13rpx; margin-top: 23rpx; }.article-actions view { flex: 1; min-height: 82rpx; font-size: 24rpx; }
+.article-detail-page.clinical .outline-mark { background: #0e706b; }.article-detail-page.service .outline-mark { background: #55718d; }.article-detail-page.botanical .outline-mark { background: #64865a; }.article-detail-page.nutrition .outline-mark { background: #b66b32; }.article-detail-page.daily .outline-mark { background: #728c61; }.article-detail-page.service-guide .outline-mark { background: #32747a; }.article-detail-page.member .outline-mark { background: #89627e; }

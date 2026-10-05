@@ -1,0 +1,39 @@
+<view class="page-shell member-page">
+  <view class="page-heading">
+    <text class="eyebrow">会员中心 / 晋升</text>
+    <text class="page-title">会员晋升申请</text>
+    <text class="page-subtitle">连续三个月每月业绩达到 10 万，或三个月累计达到 30 万，可申请成为销售人员（高级会员）。</text>
+  </view>
+  <view wx:if="{{loading}}" class="surface empty-state"><text>正在读取业绩条件</text></view>
+  <view wx:elif="{{errorMessage && authRequired}}" class="surface empty-state">
+    <text>{{errorMessage}}</text>
+    <view class="primary-button empty-button" bindtap="openLogin">去登录</view>
+    <view class="secondary-button empty-button" bindtap="retry">重新加载</view>
+  </view>
+  <view wx:elif="{{errorMessage}}" class="surface empty-state">
+    <text>{{errorMessage}}</text>
+    <view class="secondary-button empty-button" bindtap="retry">重新加载</view>
+  </view>
+  <view wx:else>
+    <view class="surface promotion-summary">
+      <view class="summary-line"><view><text class="card-label">最近三个月累计业绩</text><text class="card-title">¥{{totalAmountText}}</text></view><text class="eligibility-badge {{eligibility ? (eligibility.eligible ? 'success' : 'muted-badge') : ''}}">{{eligibilityText}}</text></view>
+      <text class="muted">业绩含运费，不含本人购买和取消业绩</text>
+      <view class="criteria-line"><text>申请条件</text><text>{{criteriaText}}</text></view>
+      <text wx:if="{{!eligibility.eligible}}" class="gap-hint">距离累计达标还差 ¥{{totalGapText}}</text>
+    </view>
+    <view class="surface promotion-months">
+      <view class="section-heading-inline"><text class="section-heading__title">连续三个月明细</text><text class="muted">每月目标 ¥100,000</text></view>
+      <view wx:for="{{monthly}}" wx:key="period" class="month-row"><view><text>{{item.period}}</text><text class="muted">{{item.qualifiedText}}</text></view><view class="month-amount"><text>¥{{item.amountText}}</text><text wx:if="{{!item.qualified}}" class="muted">还差 ¥{{item.gapText}}</text></view></view>
+    </view>
+    <view wx:if="{{application}}" class="surface application-card {{application.status}}">
+      <view class="application-head"><text class="application-title">晋升申请：{{application.statusText}}</text><text class="status-pill {{application.status}}">{{application.statusText}}</text></view>
+      <text class="application-copy">{{application.reviewReasonText}}</text>
+      <text wx:if="{{application.submittedAtText}}" class="muted application-time">提交时间：{{application.submittedAtText}}</text>
+      <text wx:if="{{application.reviewedAtText}}" class="muted application-time">审核时间：{{application.reviewedAtText}}</text>
+      <view wx:if="{{application.status === 'rejected' && eligibility.eligible}}" class="primary-button member-submit" bindtap="apply">{{submitting ? '正在提交…' : '重新提交申请'}}</view>
+    </view>
+    <view wx:elif="{{eligibility && eligibility.canApply}}" class="primary-button member-submit" bindtap="apply">{{submitting ? '正在提交…' : '提交晋升申请'}}</view>
+    <view wx:else class="surface empty-state promotion-empty"><text>当前尚未达到晋升条件，请继续积累业绩。</text></view>
+    <view wx:if="{{application && application.status === 'approved'}}" class="secondary-button member-submit" bindtap="openNetwork">查看我的关系</view>
+  </view>
+</view>

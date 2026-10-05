@@ -1,0 +1,4 @@
+{"file":".trellis/spec/admin/frontend/index.md","reason":"Check admin build and route flows."}
+{"file":".trellis/spec/admin/frontend/contracts.md","reason":"Check permissions, state and destructive actions."}
+{"file":".trellis/spec/server/backend/contracts.md","reason":"Check API and audit behavior."}
+{"file":".trellis/tasks/10-03-sales-ai-visual-redesign/prd.md","reason":"Check all AI states and acceptance criteria."}

@@ -1,0 +1,5 @@
+{"file": ".trellis/spec/guides/cross-layer-thinking-guide.md", "reason": "Review cross-layer contracts."}
+{"file": ".trellis/spec/admin/frontend/index.md", "reason": "Review admin UX, pagination and permissions."}
+{"file": ".trellis/spec/server/backend/index.md", "reason": "Review migration and persistence behavior."}
+{"file": ".trellis/spec/miniprogram/frontend/index.md", "reason": "Review mini-program page and API behavior."}
+{"file": ".trellis/tasks/10-03-sales-membership-domain-rebuild/design.md", "reason": "Review design acceptance and compatibility."}

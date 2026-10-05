@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <rect width="800" height="800" rx="96" fill="#fff0d8"/>
+  <circle cx="608" cy="190" r="126" fill="#f8d195" opacity=".8"/>
+  <path d="M227 275h300l-24 300c-3 42-37 76-79 76H330c-42 0-76-34-79-76z" fill="#c37b35"/>
+  <path d="M252 302h250v46H252z" fill="#e5a963"/>
+  <path d="M297 430c39-55 95-72 169-50-12 68-69 103-169 50z" fill="#fff3d7" opacity=".85"/>
+  <path d="M384 380c13 27 13 57 0 89" fill="none" stroke="#c37b35" stroke-width="11" stroke-linecap="round"/>
+  <text x="68" y="104" fill="#995b24" font-family="serif" font-size="30" font-weight="700" letter-spacing="6">JZ BOTANICAL</text>
+  <text x="68" y="744" fill="#995b24" font-family="sans-serif" font-size="34" font-weight="700">草本轻养茶</text>
+</svg>

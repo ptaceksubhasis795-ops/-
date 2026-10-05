@@ -1,0 +1,12 @@
+.addresses-page { padding-bottom: 80rpx; }
+.address-card { margin-bottom: 18rpx; padding: 24rpx; }
+.address-head { display: flex; align-items: center; gap: 16rpx; }
+.address-name { color: #1f2937; font-size: 28rpx; font-weight: 700; }
+.address-phone { color: #64748b; font-size: 23rpx; }
+.address-default { margin-left: auto; padding: 6rpx 12rpx; border-radius: 8rpx; background: #e6f4f1; color: #0f766e; font-size: 20rpx; }
+.address-detail { display: block; margin-top: 14rpx; color: #64748b; font-size: 24rpx; line-height: 1.5; }
+.add-address { margin-top: 22rpx; }
+.address-form { margin-top: 20rpx; padding: 24rpx; }
+.address-form input { min-height: 82rpx; border-bottom: 2rpx solid #eef2f5; color: #334155; font-size: 25rpx; }
+.address-default-row { display: flex; align-items: center; justify-content: space-between; min-height: 86rpx; color: #475569; font-size: 24rpx; }
+.form-actions { display: flex; gap: 16rpx; margin-top: 18rpx; }.form-actions > view { flex: 1; }

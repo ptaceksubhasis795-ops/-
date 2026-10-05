@@ -1,0 +1,16 @@
+<view class="page-shell cart-page">
+  <view class="page-heading"><text class="eyebrow">我的购物袋</text><text class="page-title">购物袋</text><text class="page-subtitle">把想要的健康选择，留在一起。</text></view>
+
+  <view wx:if="{{items.length}}" class="cart-list">
+    <view wx:for="{{items}}" wx:key="cartKey" class="surface cart-row">
+      <view class="cart-thumb image-frame" style="background: {{item.product.color}};"><image wx:if="{{item.product.image}}" class="product-art" src="{{item.product.image}}" mode="aspectFit" /><image wx:if="{{item.product.overlay}}" class="product-overlay" src="{{item.product.overlay}}" mode="scaleToFill" /><view wx:if="{{!item.product.image}}" class="product-fallback {{item.product.category}}"><text class="product-fallback__mark">{{item.product.category === 'prescription' ? '处' : '养'}}</text></view></view>
+      <view class="cart-copy"><text class="cart-name">{{item.product.name}}</text><text class="cart-meta">{{item.skuName || item.product.unit}} · ×{{item.quantity}}</text><text class="cart-price">¥{{item.lineTotalText}}</text></view>
+      <text class="cart-remove" bindtap="remove" data-id="{{item.productId}}" data-sku-id="{{item.skuId}}">×</text>
+    </view>
+  </view>
+
+  <view wx:else class="surface empty-state cart-empty"><text class="empty-symbol">袋</text><text>还没有加入商品</text><text class="empty-copy">挑选一件适合今天的轻养好物</text><view class="secondary-button empty-button" bindtap="shop">去逛逛</view></view>
+
+  <view wx:if="{{items.length}}" class="cart-summary surface"><view class="shipping-hint"><text class="shipping-icon">↗</text><text wx:if="{{freight}}">满 ¥199 免运费，还差 ¥{{shippingGapText}} 元</text><text wx:else>已享受包邮服务</text></view><view class="summary-line"><text>商品小计</text><text>¥{{subtotalText}}</text></view><view class="summary-line"><text>运费</text><text>{{freightText}}</text></view><view class="summary-total"><text>合计</text><text>¥{{totalText}}</text></view><view class="primary-button cart-checkout" bindtap="checkout">去结算 <text class="checkout-arrow">→</text></view></view>
+</view>
+

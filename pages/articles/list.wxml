@@ -1,0 +1,13 @@
+<view class="page-shell articles-page">
+  <view class="page-heading"><text class="eyebrow">健康内容</text><text class="page-title">健康科普</text><text class="page-subtitle">按主题查看处方、营养、生活和会员服务内容。</text></view>
+  <view class="article-search"><text class="article-search-symbol">⌕</text><input value="{{keyword}}" bindinput="onSearchInput" placeholder="搜索健康科普内容" confirm-type="search" /><text wx:if="{{keyword}}" class="article-search-clear" bindtap="onSearchInput" data-value="">×</text></view>
+  <view class="category-tabs"><view wx:for="{{categoryRows}}" wx:key="index" class="category-row"><view wx:for="{{item}}" wx:key="key" class="category-tab {{categoryFilter === item.key ? 'active' : ''}}" data-key="{{item.key}}" bindtap="chooseCategory">{{item.name}}</view></view></view>
+  <view wx:if="{{loading}}" class="surface empty-state"><text>正在加载文章</text></view>
+  <view wx:elif="{{errorMessage}}" class="surface empty-state"><text>{{errorMessage}}</text><view class="secondary-button empty-button" bindtap="retry">重新加载</view></view>
+  <view wx:else class="article-list">
+    <view wx:for="{{articles}}" wx:key="id" class="surface article-card article-{{item.categoryMeta.theme}}" bindtap="open" data-id="{{item.id}}">
+      <image class="article-cover-image" src="{{item.coverImage || item.categoryMeta.image}}" mode="aspectFill" /><view class="article-card-shade"></view><view class="article-card-copy"><text class="article-category">{{item.categoryMeta.name}}</text><text class="article-title">{{item.title}}</text><text class="article-summary">{{item.summary}}</text><text class="article-read">阅读全文 →</text></view><text wx:if="{{item.recommended}}" class="article-recommend">推荐</text>
+    </view>
+  </view>
+  <view wx:if="{{!loading && !errorMessage && !articles.length}}" class="surface empty-state"><text class="empty-symbol">知</text><text>{{emptyMessage}}</text><view wx:if="{{hasFilters}}" class="secondary-button empty-button" bindtap="clearFilters">清除筛选</view></view>
+</view>

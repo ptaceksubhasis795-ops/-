@@ -1,0 +1,93 @@
+<view class="page-shell home-page">
+  <view class="home-topline">
+    <image class="home-botanical" src="/assets/overlays/title-botanical-arc.webp" mode="aspectFit" />
+    <view class="home-copy">
+      <view class="home-brand-line"><text class="eyebrow">九转健康</text><text class="home-edition">日常养护 / 01</text></view>
+      <text class="home-greeting"><text class="home-greeting-accent">把健康，</text>慢慢养成日常</text>
+      <view class="home-caption"><text class="home-caption-mark">01</text><text>专业商品、处方服务与健康记录，一处管理</text></view>
+    </view>
+    <view class="home-seal"><text>九转</text><text>健康印</text></view>
+  </view>
+
+  <view class="search-bar" bindtap="handleActionTap" data-label="搜索">
+    <view class="search-symbol">⌕</view>
+    <text class="search-placeholder">搜索商品、科普内容</text>
+    <text class="search-arrow">→</text>
+  </view>
+
+  <view wx:if="{{loading}}" class="surface empty-state"><text>正在加载首页内容</text></view>
+  <view wx:elif="{{errorMessage}}" class="surface empty-state"><text>{{errorMessage}}</text><view class="secondary-button empty-button" bindtap="onShow">重新加载</view></view>
+  <swiper wx:else class="banner-swiper" indicator-dots="true" indicator-color="rgba(255,255,255,.42)" indicator-active-color="#ffffff" autoplay="true" interval="4200" duration="500" circular="true">
+    <swiper-item wx:for="{{banners}}" wx:key="id" bindtap="handleBannerTap" data-index="{{index}}">
+      <view class="banner-card {{item.tone}}">
+        <image wx:if="{{item.image}}" class="banner-art" src="{{item.image}}" mode="aspectFill" />
+        <image wx:if="{{item.overlay}}" class="banner-overlay" src="{{item.overlay}}" mode="scaleToFill" />
+        <view class="banner-shade"></view>
+        <view class="banner-copy">
+          <text class="banner-kicker">本期推荐 / 0{{index + 1}}</text>
+          <text class="banner-title">{{item.title}}</text>
+          <text class="banner-subtitle">{{item.subtitle}}</text>
+          <text class="banner-cta">立即了解 →</text>
+        </view>
+        <view class="banner-orbit"><text>{{item.tone === 'amber' ? '处' : '养'}}</text></view>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <view class="care-strip">
+    <view class="care-strip-item"><text class="care-dot teal"></text><text>药师审核</text></view>
+    <view class="care-strip-item"><text class="care-dot amber"></text><text>批次可追溯</text></view>
+    <view class="care-strip-item"><text class="care-dot plum"></text><text>配送有记录</text></view>
+  </view>
+
+  <view class="section-head">
+    <view><text class="section-kicker">选择服务</text><text class="section-title">从今天开始照顾自己</text></view>
+    <text class="section-more" bindtap="handleActionTap" data-label="全部分类">全部 ›</text>
+  </view>
+
+  <view class="category-list">
+    <view wx:for="{{categories}}" wx:key="title" class="category-card {{item.tone}}" bindtap="handleCategoryTap" data-title="{{item.title}}">
+      <image wx:if="{{item.image}}" class="category-art" src="{{item.image}}" mode="aspectFit" />
+      <image wx:if="{{item.overlay}}" class="category-overlay" src="{{item.overlay}}" mode="scaleToFill" />
+      <view class="category-shade"></view>
+      <view class="category-content"><view class="category-icon">{{index === 0 ? '处' : '养'}}</view><view class="category-copy"><text class="category-kicker">{{item.kicker}}</text><text class="category-title">{{item.title}}</text><text class="category-description">{{item.description}}</text><text class="category-link">查看服务 →</text></view><text class="category-arrow">↗</text></view>
+    </view>
+  </view>
+
+  <view class="section-head featured-head">
+    <view><text class="section-kicker">今日精选</text><text class="section-title">今日精选</text></view>
+    <text class="section-more" bindtap="handleActionTap" data-label="全部分类">逛商城 ›</text>
+  </view>
+
+  <view class="featured-list">
+    <view wx:for="{{featuredProducts}}" wx:key="id" class="featured-card" bindtap="handleProductTap" data-id="{{item.id}}">
+      <view class="featured-image image-frame" style="background: {{item.color}};">
+        <image wx:if="{{item.image}}" class="product-art" src="{{item.image}}" mode="aspectFit" />
+        <image wx:if="{{item.overlay}}" class="product-overlay" src="{{item.overlay}}" mode="scaleToFill" />
+        <view wx:if="{{!item.image}}" class="product-fallback {{item.category}}"><text class="product-fallback__mark">{{item.category === 'prescription' ? '处' : '养'}}</text></view>
+        <text class="featured-badge">{{item.badge}}</text>
+      </view>
+      <view class="featured-copy"><text class="featured-name">{{item.name}}</text><text class="featured-subtitle">{{item.subtitle}}</text><view class="featured-price-line"><text class="featured-price">¥{{item.price}}</text><text class="featured-unit">/{{item.unit}}</text></view></view>
+    </view>
+  </view>
+
+  <view class="quick-actions">
+    <view class="quick-action" bindtap="handleActionTap" data-label="问诊开方"><view class="quick-icon"><image class="quick-icon-image" src="/assets/icons/quick-consultation.webp" mode="aspectFit" /></view><text>问诊开方</text></view>
+    <view class="quick-action" bindtap="handleActionTap" data-label="上传处方"><view class="quick-icon"><image class="quick-icon-image" src="/assets/icons/quick-prescription-upload.webp" mode="aspectFit" /></view><text>上传处方</text></view>
+    <view class="quick-action" bindtap="handleActionTap" data-label="我的订单"><view class="quick-icon"><image class="quick-icon-image" src="/assets/icons/quick-orders.webp" mode="aspectFit" /></view><text>我的订单</text></view>
+    <view class="quick-action" bindtap="handleActionTap" data-label="客服"><view class="quick-icon"><image class="quick-icon-image" src="/assets/icons/quick-support.webp" mode="aspectFit" /></view><text>联系客服</text></view>
+  </view>
+
+  <view class="section-head article-head">
+    <view><text class="section-kicker">健康科普</text><text class="section-title">健康科普</text></view>
+    <text class="section-more" bindtap="handleActionTap" data-label="更多文章">更多 ›</text>
+  </view>
+  <view class="article-list">
+    <view wx:for="{{articles}}" wx:key="id" class="article-row" bindtap="handleArticleTap" data-id="{{item.id}}">
+      <view class="article-index">0{{index + 1}}</view><view class="article-text"><text class="article-tag">{{item.tagText || item.tag}}</text><text class="article-title">{{item.title}}</text></view><text class="article-arrow">↗</text>
+    </view>
+  </view>
+
+</view>
+
+

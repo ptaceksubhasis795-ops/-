@@ -1,0 +1,30 @@
+<view class="page-shell shop-page">
+  <view class="shop-topline">
+    <view><text class="eyebrow">健康商城</text><text class="page-title">精选商品</text><text class="shop-caption">把需要的，选得更安心</text></view>
+    <view class="cart-entry" bindtap="openCart"><text class="cart-symbol">袋</text><text wx:if="{{cartCount > 0}}" class="cart-badge">{{cartCount}}</text></view>
+  </view>
+
+  <view class="search-box"><text class="search-symbol">⌕</text><input value="{{keyword}}" bindinput="onSearchInput" placeholder="搜索商品或关键词" confirm-type="search" /><text wx:if="{{keyword}}" class="clear-symbol" bindtap="onSearchInput" data-value="">×</text></view>
+  <scroll-view class="tabs" scroll-x="true" enhanced="true" show-scrollbar="false"><view wx:for="{{tabs}}" wx:key="key" class="tab {{category === item.key ? 'active' : ''}}" bindtap="switchCategory" data-key="{{item.key}}"><text>{{item.label}}</text></view></scroll-view>
+
+  <view class="notice" wx:if="{{category === 'prescription'}}"><text class="notice-mark">处</text><text>处方商品需绑定实名就诊人，审核通过后开放支付。</text><text class="notice-arrow">→</text></view>
+
+  <view wx:if="{{loading}}" class="surface empty-state"><text>正在加载商品</text></view>
+  <view wx:elif="{{errorMessage}}" class="surface empty-state"><text>{{errorMessage}}</text><view class="secondary-button empty-button" bindtap="refresh">重新加载</view></view>
+  <view wx:else>
+  <view class="catalog-meta"><text>{{products.length}} 件精选商品</text><text class="catalog-sort">综合排序 ˅</text></view>
+  <view class="product-list" wx:if="{{products.length}}">
+    <view wx:for="{{products}}" wx:key="id" class="product-card" bindtap="openProduct" data-id="{{item.id}}">
+      <view class="product-visual image-frame" style="background: {{item.color}};">
+        <image wx:if="{{item.image}}" class="product-art" src="{{item.image}}" mode="aspectFit" />
+        <image wx:if="{{item.overlay}}" class="product-overlay" src="{{item.overlay}}" mode="scaleToFill" />
+        <view wx:if="{{!item.image}}" class="product-fallback {{item.category}}"><text class="product-fallback__mark">{{item.category === 'prescription' ? '处' : '养'}}</text></view>
+        <text class="product-badge">{{item.badge}}</text>
+      </view>
+      <view class="product-main"><text class="product-name">{{item.name}}</text><text class="product-subtitle">{{item.subtitle}}</text><view class="product-bottom"><view class="product-price-wrap"><text class="product-price">¥{{item.price}}</text><text class="product-original">¥{{item.originalPrice}}</text></view><text class="product-stock">库存 {{item.stock}}</text></view></view>
+    </view>
+  </view>
+  <view wx:else class="surface empty-state"><text class="empty-symbol">⌕</text><text>没有找到匹配商品</text><view class="secondary-button empty-button" bindtap="onSearchInput" data-value="">清除筛选</view></view>
+  </view>
+</view>
+

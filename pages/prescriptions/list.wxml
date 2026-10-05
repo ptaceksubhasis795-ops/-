@@ -1,0 +1,12 @@
+<view class="page-shell prescriptions-page">
+  <view class="page-heading"><text class="eyebrow">处方服务</text><text class="page-title">我的处方</text><text class="page-subtitle">一张处方只能购买一次，过期后需要重新开方。</text></view>
+  <view class="rx-actions"><view class="primary-button" bindtap="upload"><text class="button-icon">＋</text>上传线下处方</view><view class="secondary-button" bindtap="consult"><text class="button-icon">问</text>问诊开方</view></view>
+  <view class="patient-hint"><text class="hint-mark">人</text><text>购买处方饮片前，请先完成就诊人实名信息。</text><text class="hint-arrow">→</text></view>
+  <view wx:if="{{loading}}" class="surface empty-state"><text>正在加载处方</text></view>
+  <view wx:elif="{{errorMessage}}" class="surface empty-state"><text>{{errorMessage}}</text><view class="primary-button empty-button" bindtap="openLogin">去登录</view><view class="secondary-button empty-button" bindtap="retry">重新加载</view></view>
+  <view wx:elif="{{prescriptions.length}}" class="rx-list"><view wx:for="{{prescriptions}}" wx:key="id" class="surface rx-card"><view class="rx-card-top"><text class="rx-index">0{{index + 1}}</text><text class="rx-status {{item.status}}">{{item.statusText}}</text></view><view class="rx-head"><view><text class="rx-name">{{item.itemName || '待药师确认品种'}}</text><text class="rx-source">{{item.source === 'offline' ? '线下上传' : '互联网医院'}} · 就诊人 {{item.patientName}}</text></view></view><view class="rx-meta"><text>有效期：{{item.validUntil || '审核中'}}</text><text wx:if="{{item.amount}}">¥{{item.amount}}</text></view><view wx:if="{{item.fileKey}}" class="secondary-button rx-pay" bindtap="viewFile" data-id="{{item.id}}">查看处方凭证</view><view wx:if="{{item.canPay}}" class="primary-button rx-pay" bindtap="pay" data-id="{{item.id}}">确认处方并支付 →</view><text wx:if="{{item.unavailableReason}}" class="rx-tip">{{item.unavailableReason}}</text><text wx:if="{{item.status === 'pending_review'}}" class="rx-tip">药师将在后台审核，审核结果会通过微信消息提醒。</text></view></view>
+  <view wx:else class="surface empty-state"><text class="empty-symbol">处</text><text>还没有处方记录</text><text class="empty-copy">上传一张清晰完整的处方图片</text></view>
+</view>
+
+
+
